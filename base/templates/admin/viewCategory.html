@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+    <title>Otika - Admin Dashboard Template</title>
+    <!-- General CSS Files -->
+    <link rel="stylesheet" href="../../static/adminResources/css/app.min.css">
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="../../static/adminResources/css/style.css">
+    <link rel="stylesheet" href="../../static/adminResources/css/components.css">
+    <!-- Custom style CSS -->
+    <link rel="stylesheet" href="../../static/adminResources/css/custom.css">
+    <link rel='shortcut icon' type='image/x-icon' href='../../static/adminResources/image/favicon.ico'/>
+</head>
+
+<body>
+<div id="app">
+    <div class="main-wrapper main-wrapper-1">
+        <div class="navbar-bg"></div>
+
+
+        {% include 'admin/header.html' %}
+
+
+        {% include 'admin/menu.html' %}
+
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <section class="section">
+                <div class="section-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+
+                            <table class="table table-striped dataTable no-footer" id="table-1" role="grid"
+                                   aria-describedby="table-1_info">
+                                <thead>
+                                <tr role="row">
+                                    <th class="sorting" tabindex="0" aria-controls="table-1" rowspan="1" colspan="1"
+                                        aria-label="Task Name: activate to sort column ascending" style="width: 132px;">
+                                        Category
+                                    </th>
+                                    <th class="sorting" tabindex="0" aria-controls="table-1" rowspan="1" colspan="1"
+                                        aria-label="Task Name: activate to sort column ascending" style="width: 132px;">
+                                        Description
+                                    </th>
+                                    <th class="sorting" tabindex="0" aria-controls="table-1" rowspan="1" colspan="1"
+                                        aria-label="Action: activate to sort column ascending" style="width: 64px;">
+                                        Action
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                {%  for category in category_vo_list %}
+                                {% set i=1 %}
+                                <tr role="row" {% if i%2!=0 %}class="odd"{% endif %} {% if i%2==0 %}class="even"{% endif %}>
+                                    <td>{{ category.category_name }}</td>
+                                    <td>{{ category.category_description }}</td>
+                                    <td>
+                                        <a href="/admin/edit_category?category_id={{ category.category_id }}" ><i data-feather="edit" ></i></a>
+                                        <a href="/admin/delete_category?category_id={{ category.category_id }}" style="margin-left: 15px"><i data-feather="trash"></i></a>
+                                    </td>
+                                </tr>
+                                {% set i= i + 1 %}
+                                {% endfor %}
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        {% include 'admin/footer.html' %}
+    </div>
+</div>
+<!-- General JS Scripts -->
+<script src="../../static/adminResources/js/app.min.js"></script>
+<!-- JS Libraies -->
+<!-- Page Specific JS File -->
+<!-- Template JS File -->
+<script src="../../static/adminResources/js/scripts.js"></script>
+<!-- Custom JS File -->
+<script src="../../static/adminResources/js/custom.js"></script>
+<script>
+    $(document).ready(function () {
+        iziToast.error({
+            title: 'Hello, world!',
+            message: 'This awesome plugin is made by iziToast',
+            position: 'topRight'
+        });
+    });
+</script>
+</body>
+
+</html>
