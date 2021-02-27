@@ -28,19 +28,22 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
-                                <form action="/admin/update_category" method="post">
+                                <form action="/admin/insert_subcategory" method="post">
                                     <div class="card-header">
-                                        <h4>Add Category</h4>
+                                        <h4>Add Subcategory</h4>
                                     </div>
                                     <div class="card-body">
-                                        <input type="hidden" name="category_id" value="{{ category_vo_list[0].category_id }}">
                                         <div class="form-group">
                                             <label>Category Name</label>
-                                            <input type="text" value="{{ category_vo_list[0].category_name }}" name="category_name" class="form-control" required="">
+
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Subcategory Name</label>
+                                            <input type="text" name="subcategory_name" class="form-control" required="">
                                         </div>
                                         <div class="form-group mb-0">
-                                            <label>Category Description</label>
-                                            <textarea name="category_description" class="form-control" required="">{{ category_vo_list[0].category_description }}</textarea>
+                                            <label>Subcategory Description</label>
+                                            <textarea name="subcategory_description" class="form-control" required=""></textarea>
                                         </div>
                                     </div>
                                     <div class="card-footer">
