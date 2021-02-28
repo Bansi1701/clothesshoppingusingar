@@ -24,3 +24,8 @@ class CityDAO:
     def update_city(self,city_vo):
         database.session.merge(city_vo)
         database.session.commit()
+
+    def view_ajax_area_city(self, city_vo):
+        city_vo_list = CityVO.query.filter_by(
+            city_state_id=city_vo.city_state_id).all()
+        return city_vo_list
