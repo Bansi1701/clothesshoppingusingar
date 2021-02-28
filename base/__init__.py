@@ -13,7 +13,7 @@ app.config['SQLALCHEMY_ECHO'] = True
 
 app.config['SQLALCHEMY_RECORD_QUERIES'] = True
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:root@localhost:3306/projectdb'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:root@localhost:3306/clothesshopingusingar'
 
 app.config['SQLALCHEMY_MAX_OVERFLOW'] = 0
 

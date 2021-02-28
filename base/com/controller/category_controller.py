@@ -9,6 +9,7 @@ from base.com.dao.category_dao import CategoryDAO
 def admin_load_category():
     try:
         return render_template('admin/addCategory.html')
+
     except Exception as ex:
         print("admin_load_category route exception occured>>>>>>>>>>", ex)
 
@@ -25,6 +26,7 @@ def admin_insert_category():
         category_dao.insert_category(category_vo)
 
         return redirect(url_for('admin_view_category'))
+
     except Exception as ex:
         print("admin_insert_category route exception occured>>>>>>>>>>", ex)
 
@@ -33,8 +35,9 @@ def admin_insert_category():
 def admin_view_category():
     try:
         category_dao = CategoryDAO()
-        category_vo_list = category_dao.fetch_category()
+        category_vo_list = category_dao.view_category()
         return render_template('admin/viewCategory.html', category_vo_list=category_vo_list)
+
     except Exception as ex:
         print("admin_view_category route exception occured>>>>>>>>>>", ex)
 
@@ -47,6 +50,7 @@ def admin_delete_category():
         category_vo.category_id = request.args.get('category_id')
         category_dao.delete_category(category_vo)
         return redirect(url_for('admin_view_category'))
+
     except Exception as ex:
         print("admin_delete_category route exception occured>>>>>>>>>>", ex)
 
@@ -59,6 +63,7 @@ def admin_edit_category():
         category_vo.category_id = request.args.get('category_id')
         category_vo_list = category_dao.fetch_category_for_edit(category_vo)
         return render_template('admin/editCategory.html', category_vo_list=category_vo_list)
+
     except Exception as ex:
         print("admin_edit_category route exception occured>>>>>>>>>>", ex)
 
@@ -74,5 +79,6 @@ def admin_update_category():
 
         category_dao.update_category(category_vo)
         return redirect(url_for('admin_view_category'))
+
     except Exception as ex:
         print("admin_update_category route exception occured>>>>>>>>>>", ex)
