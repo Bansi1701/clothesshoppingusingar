@@ -54,7 +54,7 @@ def admin_delete_state():
         print("admin_delete_state route exception occured>>>>>>>>>>", ex)
 
 
-@app.route('/admin/state_state', methods=['get'])
+@app.route('/admin/edit_state', methods=['get'])
 def admin_edit_state():
     try:
         state_vo=StateVO()

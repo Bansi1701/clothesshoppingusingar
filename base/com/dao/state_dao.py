@@ -19,6 +19,6 @@ class StateDAO:
         state_vo_list = StateVO.query.filter_by(state_id=state_vo.state_id).all()
         return state_vo_list
 
-    def upate_state(self,state_vo):
+    def update_state(self,state_vo):
         database.session.merge(state_vo)
         database.session.commit()
