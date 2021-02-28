@@ -29,19 +29,34 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
-                                <form action="/admin/update_category" method="post">
+                                <form action="/admin/update_subcategory" method="post">
                                     <div class="card-header">
                                         <h4>Add Category</h4>
                                     </div>
                                     <div class="card-body">
-                                        <input type="hidden" name="category_id" value="{{ category_vo_list[0].category_id }}">
+                                        <input type="hidden" name="subcategory_id"
+                                               value="{{ subcategory_vo_list[0].subcategory_id }}">
                                         <div class="form-group">
                                             <label>Category Name</label>
-                                            <input type="text" value="{{ category_vo_list[0].category_name }}" name="category_name" class="form-control" required="">
+                                            <select class="form-control" name="subcategory_category_id" required>
+                                                <option value disabled selected>Select one option</option>
+                                                {% for category in category_vo_list %}
+                                                    <option value="{{ category.category_id }}"
+                                                            {% if category.category_id == subcategory_vo_list[0].subcategory_category_id %}
+                                                            selected {% endif %}>{{ category.category_name }}</option>
+                                                {% endfor %}
+
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>SubCategory Name</label>
+                                            <input type="text" value="{{ subcategory_vo_list[0].subcategory_name }}"
+                                                   name="subcategory_name" class="form-control" required="">
                                         </div>
                                         <div class="form-group mb-0">
-                                            <label>Category Description</label>
-                                            <textarea name="category_description" class="form-control" required="">{{ category_vo_list[0].category_description }}</textarea>
+                                            <label>SubCategory Description</label>
+                                            <textarea name="subcategory_description" class="form-control"
+                                                      required="">{{ subcategory_vo_list[0].subcategory_description }}</textarea>
                                         </div>
                                     </div>
                                     <div class="card-footer">

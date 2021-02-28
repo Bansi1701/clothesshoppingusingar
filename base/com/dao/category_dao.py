@@ -6,7 +6,7 @@ class CategoryDAO:
         database.session.add(category_vo)
         database.session.commit()
 
-    def fetch_category(self):
+    def view_category(self):
         category_vo_list = CategoryVO.query.all()
         return category_vo_list
 

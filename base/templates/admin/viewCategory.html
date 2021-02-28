@@ -8,6 +8,8 @@
     <!-- General CSS Files -->
     <link rel="stylesheet" href="../../static/adminResources/css/app.min.css">
     <!-- Template CSS -->
+    <link rel="stylesheet" href="../../static/adminResources/css/datatables.min.css">
+    <link rel="stylesheet" href="../../static/adminResources/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="../../static/adminResources/css/style.css">
     <link rel="stylesheet" href="../../static/adminResources/css/components.css">
     <!-- Custom style CSS -->
@@ -26,68 +28,64 @@
             <section class="section">
                 <div class="section-body">
                     <div class="row">
-                        <div class="col-sm-12">
-
-                            <table class="table table-striped dataTable no-footer" id="table-1" role="grid"
-                                   aria-describedby="table-1_info">
-                                <thead>
-                                <tr role="row">
-                                    <th class="sorting" tabindex="0" aria-controls="table-1" rowspan="1" colspan="1"
-                                        aria-label="Task Name: activate to sort column ascending" style="width: 132px;">
-                                        Category
-                                    </th>
-                                    <th class="sorting" tabindex="0" aria-controls="table-1" rowspan="1" colspan="1"
-                                        aria-label="Task Name: activate to sort column ascending" style="width: 132px;">
-                                        Description
-                                    </th>
-                                    <th class="sorting" tabindex="0" aria-controls="table-1" rowspan="1" colspan="1"
-                                        aria-label="Action: activate to sort column ascending" style="width: 64px;">
-                                        Action
-                                    </th>
-                                </tr>
-                                </thead>
-                                <tbody>
-
-                                {%  for category in category_vo_list %}
-                                {% set i=1 %}
-                                <tr role="row" {% if i%2!=0 %}class="odd"{% endif %} {% if i%2==0 %}class="even"{% endif %}>
-                                    <td>{{ category.category_name }}</td>
-                                    <td>{{ category.category_description }}</td>
-                                    <td>
-                                        <a href="/admin/edit_category?category_id={{ category.category_id }}" ><i data-feather="edit" ></i></a>
-                                        <a href="/admin/delete_category?category_id={{ category.category_id }}" style="margin-left: 15px"><i data-feather="trash"></i></a>
-                                    </td>
-                                </tr>
-                                {% set i= i + 1 %}
-                                {% endfor %}
-
-                                </tbody>
-                            </table>
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4>Category Table</h4>
+                                </div>
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table-hover" id="save-stage"
+                                               style="width:100%;">
+                                            <thead>
+                                            <tr>
+                                                <th>Category</th>
+                                                <th>Description</th>
+                                                <th>Action</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            {% for category in category_vo_list %}
+                                                <tr>
+                                                    <td>{{ category.category_name }}</td>
+                                                    <td>{{ category.category_description }}</td>
+                                                    <td>
+                                                        <a href="/admin/edit_category?category_id={{ category.category_id }}"><i
+                                                                data-feather="edit"></i></a>
+                                                        <a href="/admin/delete_category?category_id={{ category.category_id }}"
+                                                           style="margin-left: 15px"><i data-feather="trash"></i></a>
+                                                    </td>
+                                                </tr>
+                                            {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
         </div>
-        {% include 'admin/footer.html' %}
     </div>
 </div>
 <!-- General JS Scripts -->
 <script src="../../static/adminResources/js/app.min.js"></script>
 <!-- JS Libraies -->
 <!-- Page Specific JS File -->
+<script src="../../static/adminResources/js/datatables.min.js"></script>
+<script src="../../static/adminResources/js/dataTables.bootstrap4.min.js"></script>
+<script src="../../static/adminResources/js/dataTables.buttons.min.js"></script>
+<script src="../../static/adminResources/js/buttons.flash.min.js"></script>
+<script src="../../static/adminResources/js/jszip.min.js"></script>
+<script src="../../static/adminResources/js/pdfmake.min.js"></script>
+<script src="../../static/adminResources/js/vfs_fonts.js"></script>
+<script src="../../static/adminResources/js/buttons.print.min.js"></script>
+<script src="../../static/adminResources/js/datatables.js"></script>
 <!-- Template JS File -->
 <script src="../../static/adminResources/js/scripts.js"></script>
 <!-- Custom JS File -->
 <script src="../../static/adminResources/js/custom.js"></script>
-<script>
-    $(document).ready(function () {
-        iziToast.error({
-            title: 'Hello, world!',
-            message: 'This awesome plugin is made by iziToast',
-            position: 'topRight'
-        });
-    });
-</script>
 </body>
 
 </html>
