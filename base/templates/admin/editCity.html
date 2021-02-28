@@ -15,6 +15,7 @@
     <link rel='shortcut icon' type='image/x-icon' href='../../static/adminResources/image/favicon.ico'/>
 </head>
 
+
 <body>
 <div id="app">
     <div class="main-wrapper main-wrapper-1">
@@ -28,28 +29,34 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
-                                <form action="/admin/insert_subcategory" method="post">
+                                <form action="/admin/update_city" method="post">
                                     <div class="card-header">
-                                        <h4>Add Subcategory</h4>
+                                        <h4>Add City</h4>
                                     </div>
                                     <div class="card-body">
+                                        <input type="hidden" name="city_id"
+                                               value="{{ city_vo_list[0].city_id }}">
                                         <div class="form-group">
-                                            <label>Category Name</label>
-                                            <select class="form-control" name="category_id" required>
-                                                <option value disabled selected>Select category</option>
-                                                {% for category in category_vo_list %}
-                                                    <option value="{{ category.category_id }}">{{ category.category_name }}</option>
+                                            <label>State Name</label>
+                                            <select class="form-control" name="city_state_id" required>
+                                                <option value disabled selected>Select one option</option>
+                                                {% for state in state_vo_list %}
+                                                    <option value="{{ state.state_id }}"
+                                                            {% if state.state_id == city_vo_list[0].city_state_id %}
+                                                            selected {% endif %}>{{ state.state_name }}</option>
                                                 {% endfor %}
 
                                             </select>
                                         </div>
                                         <div class="form-group">
-                                            <label>Subcategory Name</label>
-                                            <input type="text" name="subcategory_name" class="form-control" required="">
+                                            <label>City Name</label>
+                                            <input type="text" value="{{ city_vo_list[0].city_name }}"
+                                                   name="city_name" class="form-control" required="">
                                         </div>
                                         <div class="form-group mb-0">
-                                            <label>Subcategory Description</label>
-                                            <textarea name="subcategory_description" class="form-control" required=""></textarea>
+                                            <label>City Description</label>
+                                            <textarea name="city_description" class="form-control"
+                                                      required="">{{ city_vo_list[0].city_description }}</textarea>
                                         </div>
                                     </div>
                                     <div class="card-footer">

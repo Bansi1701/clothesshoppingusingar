@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+    <title>Otika - Admin Dashboard Template</title>
+    <!-- General CSS Files -->
+    <link rel="stylesheet" href="../../static/adminResources/css/app.min.css">
+    <!-- Template CSS -->
+    <link rel="stylesheet" href="../../static/adminResources/css/style.css">
+    <link rel="stylesheet" href="../../static/adminResources/css/components.css">
+    <!-- Custom style CSS -->
+    <link rel="stylesheet" href="../../static/adminResources/css/custom.css">
+    <link rel='shortcut icon' type='image/x-icon' href='../../static/adminResources/image/favicon.ico'/>
+    <script type="text/javascript">
+        function city_ajax() {
+
+            var ajax = new XMLHttpRequest();
+            var option = document.createElement("option");
+            var state_id = document.getElementById("state_id");
+            var city_id = document.getElementById("city_id");
+
+            $('#city_id').empty();
+            option.value = null;
+            option.text = "Select city";
+            option.disabled = true;
+            option.selected = true;
+            city_id.options.add(option);
+
+            ajax.onreadystatechange = function () {
+                if (ajax.readyState == 4) {
+                    var json = JSON.parse(ajax.responseText);
+                    for (var i = 0; i < json.length; i++) {
+                        option = document.createElement("option");
+
+                        option.value = json[i].city_id;
+                        option.text = json[i].city_name;
+
+                        city_id.options.add(option);
+                    }
+                }
+            }
+            ajax.open("get", "/admin/ajax_area_city?state_id=" + state_id.value, true);
+            ajax.send();
+        }
+    </script>
+</head>
+
+<body onload="state_ajax()">
+<div id="app">
+    <div class="main-wrapper main-wrapper-1">
+        <div class="navbar-bg"></div>
+        {% include 'admin/header.html' %}
+        {% include 'admin/menu.html' %}
+        <!-- Main Content -->
+        <div class="main-content">
+            <section class="section">
+                <div class="section-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <form action="/admin/insert_area" method="post">
+                                    <div class="card-header">
+                                        <h4>Add City</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <label>Area Name</label>
+                                            <input type="text" name="area_name" class="form-control" required="">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>State Name</label>
+                                            <select class="form-control" id="state_id" name="state_id"
+                                                    onchange="city_ajax()" required>
+                                                <option value disabled selected>Select state</option>
+                                                {% for state in state_vo_list %}
+                                                    <option value="{{ state.state_id }}">{{ state.state_name }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>City Name</label>
+                                            <select class="form-control" id="city_id" name="city_id" required>
+                                                <option value disabled selected>Select city</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Area Pincode</label>
+                                            <input type="number" name="area_pincode" class="form-control" required="">
+                                        </div>
+                                        <div class="form-group mb-0">
+                                            <label>Area Description</label>
+                                            <textarea name="area_description" class="form-control"
+                                                      required=""></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer">
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                        <button type="reset" class="btn btn-primary">Reset</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        {% include 'admin/footer.html' %}
+    </div>
+</div>
+<!-- General JS Scripts -->
+<script src="../../static/adminResources/js/app.min.js"></script>
+<!-- JS Libraies -->
+<!-- Page Specific JS File -->
+<!-- Template JS File -->
+<script src="../../static/adminResources/js/scripts.js"></script>
+<!-- Custom JS File -->
+<script src="../../static/adminResources/js/custom.js"></script>
+<script>
+    $(document).ready(function () {
+        iziToast.error({
+            title: 'Hello, world!',
+            message: 'This awesome plugin is made by iziToast',
+            position: 'topRight'
+        });
+    });
+</script>
+</body>
+
+</html>
