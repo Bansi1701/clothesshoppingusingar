@@ -97,7 +97,7 @@ def admin_edit_area():
         print("in admin_edit_area route exception occured>>>>>>>>>>", ex)
 
 
-'''        
+
 @app.route('/admin/update_area', methods=['POST'])
 def admin_update_area():
     try:
@@ -112,4 +112,4 @@ def admin_update_area():
         return redirect(url_for('admin_view_area'))
     except Exception as ex:
         print("in admin_update_area route exception occured>>>>>>>>>>", ex)
-'''
+
