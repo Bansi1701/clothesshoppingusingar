@@ -60,12 +60,14 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="card">
-                                <form action="/admin/insert_area" method="post">
+                                <form action="/admin/update_area" method="post">
                                     <div class="card-header">
                                         <h4>Edit Area</h4>
                                     </div>
                                     <div class="card-body">
                                         <div class="form-group">
+                                            <input type="hidden" name="area_id"
+                                               value="{{ area_vo_list[0].area_id }}">
                                             <label>State Name</label>
                                             <select class="form-control" id="state_id" name="state_id"
                                                     onchange="city_ajax()" required>

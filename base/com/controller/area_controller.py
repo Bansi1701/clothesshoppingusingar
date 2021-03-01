@@ -87,29 +87,29 @@ def admin_edit_area():
         area_vo.area_id = request.args.get('area_id')
         area_vo_list = area_dao.edit_area(area_vo)
         state_vo_list = state_dao.view_state()
-        city_vo_list=city_dao.view_city()
+        city_vo_list = city_dao.view_city()
         print('state_vo_list>>>>>>', state_vo_list)
         print('area_vo_list>>>>>>', area_vo_list)
         print('city_vo_list>>>>>>', city_vo_list)
         return render_template('admin/editArea.html', state_vo_list=state_vo_list,
-                               area_vo_list=area_vo_list,city_vo_list=city_vo_list)
+                               area_vo_list=area_vo_list, city_vo_list=city_vo_list)
     except Exception as ex:
         print("in admin_edit_area route exception occured>>>>>>>>>>", ex)
-
 
 
 @app.route('/admin/update_area', methods=['POST'])
 def admin_update_area():
     try:
-        city_vo = CityVO()
-        city_dao = CityDAO()
+        area_vo = AreaVO()
+        area_dao = AreaDAO()
 
-        city_vo.city_id = request.form.get('city_id')
-        city_vo.city_name = request.form.get('city_name')
-        city_vo.city_description = request.form.get('city_description')
-        city_vo.city_state_id = request.form.get('city_state_id')
-        city_dao.update_city(city_vo)
+        area_vo.area_id=request.form.get('area_id')
+        area_vo.area_name = request.form.get('area_name')
+        area_vo.area_pincode = request.form.get('area_pincode')
+        area_vo.area_city_id = request.form.get('city_id')
+        area_vo.area_state_id = request.form.get('state_id')
+
+        area_dao.update_area(area_vo)
         return redirect(url_for('admin_view_area'))
     except Exception as ex:
         print("in admin_update_area route exception occured>>>>>>>>>>", ex)
-
