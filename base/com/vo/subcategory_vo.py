@@ -7,7 +7,8 @@ class SubCategoryVO(database.Model):
     subcategory_id = database.Column('subcategory_id', database.Integer, primary_key=True, autoincrement=True)
     subcategory_name = database.Column('subcategory_name', database.String(100), nullable=False)
     subcategory_description = database.Column('subcategory_description', database.String(100), nullable=False)
-    subcategory_category_id = database.Column('subcategory_category_id', database.Integer, database.ForeignKey(CategoryVO.category_id))
+    subcategory_category_id = database.Column('subcategory_category_id', database.Integer,
+                                              database.ForeignKey(CategoryVO.category_id))
 
     def as_dict(self):
         return {

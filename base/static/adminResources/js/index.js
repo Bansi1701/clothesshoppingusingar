@@ -36,9 +36,7 @@ $(function () {
     });
 
 
-
 });
-
 
 
 function chart1() {
@@ -69,10 +67,10 @@ function chart1() {
             name: "High - 2019",
             data: [5, 15, 14, 36, 32, 32]
         },
-        {
-            name: "Low - 2019",
-            data: [7, 11, 30, 18, 25, 13]
-        }
+            {
+                name: "Low - 2019",
+                data: [7, 11, 30, 18, 25, 13]
+            }
         ],
         grid: {
             borderColor: "#e7e7e7",
@@ -218,14 +216,14 @@ function chart3() {
             name: "Option 1",
             data: [45, 52, 38, 24, 33, 26, 21, 20]
         },
-        {
-            name: "Option 2",
-            data: [35, 41, 62, 42, 13, 18, 29, 37]
-        },
-        {
-            name: 'Option 3',
-            data: [87, 57, 74, 99, 75, 38, 62, 47]
-        }
+            {
+                name: "Option 2",
+                data: [35, 41, 62, 42, 13, 18, 29, 37]
+            },
+            {
+                name: 'Option 3',
+                data: [87, 57, 74, 99, 75, 38, 62, 47]
+            }
         ],
         legend: {
             show: false,
@@ -253,9 +251,7 @@ function chart3() {
                 }
             }
         },
-        tooltip: {
-
-        },
+        tooltip: {},
         grid: {
             borderColor: '#f1f1f1',
         }
@@ -268,6 +264,7 @@ function chart3() {
 
     chart.render();
 }
+
 function chart4() {
     var options = {
         chart: {

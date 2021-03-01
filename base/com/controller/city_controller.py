@@ -1,9 +1,9 @@
 from flask import *
-from base import app
 
+from base import app
 from base.com.dao.city_dao import CityDAO
-from base.com.vo.city_vo import CityVO
 from base.com.dao.state_dao import StateDAO
+from base.com.vo.city_vo import CityVO
 
 
 @app.route('/admin/load_city', methods=['get'])
@@ -15,9 +15,9 @@ def admin_load_city():
 
     except Exception as ex:
         print('admin_view_city route exception occured>>>>>>>>>>', ex)
-        
-        
-@app.route('/admin/insert_city',methods=['post'])
+
+
+@app.route('/admin/insert_city', methods=['post'])
 def admin_add_city():
     try:
         city_vo = CityVO()
@@ -54,7 +54,7 @@ def admin_delete_city():
         return redirect(url_for('admin_view_city'))
     except Exception as ex:
         print("in admin_delete_city route exception occured>>>>>>>>>>", ex)
-        
+
 
 @app.route('/admin/edit_city', methods=['get'])
 def admin_edit_city():
@@ -70,8 +70,8 @@ def admin_edit_city():
                                city_vo_list=city_vo_list)
     except Exception as ex:
         print("in admin_edit_city route exception occured>>>>>>>>>>", ex)
-        
-        
+
+
 @app.route('/admin/update_city', methods=['POST'])
 def admin_update_city():
     try:

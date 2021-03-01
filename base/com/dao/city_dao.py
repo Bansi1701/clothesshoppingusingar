@@ -9,19 +9,20 @@ class CityDAO:
         database.session.commit()
 
     def view_city(self):
-        city_vo_list = database.session.query(CityVO, StateVO).join(StateVO,CityVO.city_state_id == StateVO.state_id).all()
+        city_vo_list = database.session.query(CityVO, StateVO).join(StateVO,
+                                                                    CityVO.city_state_id == StateVO.state_id).all()
         return city_vo_list
 
-    def delete_city(self,city_id):
+    def delete_city(self, city_id):
         city_vo_list = CityVO.query.get(city_id)
         database.session.delete(city_vo_list)
         database.session.commit()
 
-    def edit_city(self,city_vo):
+    def edit_city(self, city_vo):
         city_vo_list = CityVO.query.filter_by(city_id=city_vo.city_id).all()
         return city_vo_list
 
-    def update_city(self,city_vo):
+    def update_city(self, city_vo):
         database.session.merge(city_vo)
         database.session.commit()
 

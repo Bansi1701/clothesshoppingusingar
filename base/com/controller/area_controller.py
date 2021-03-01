@@ -1,11 +1,11 @@
 from flask import *
-from base import app
 
+from base import app
 from base.com.dao.area_dao import AreaDAO
-from base.com.vo.area_vo import AreaVO
 from base.com.dao.city_dao import CityDAO
-from base.com.vo.city_vo import CityVO
 from base.com.dao.state_dao import StateDAO
+from base.com.vo.area_vo import AreaVO
+from base.com.vo.city_vo import CityVO
 
 
 @app.route('/admin/load_area', methods=['get'])
@@ -43,7 +43,6 @@ def admin_add_area():
         area_dao = AreaDAO()
 
         area_vo.area_name = request.form.get('area_name')
-        area_vo.area_description = request.form.get('area_description')
         area_vo.area_pincode = request.form.get('area_pincode')
         area_vo.area_city_id = request.form.get('city_id')
         area_vo.area_state_id = request.form.get('state_id')
@@ -66,34 +65,35 @@ def admin_view_area():
         print("admin_view_area route exception occured>>>>>>>>>>", ex)
 
 
-'''
 @app.route('/admin/delete_area', methods=['get'])
 def admin_delete_area():
     try:
-        city_dao = CityDAO()
-        city_id = request.args.get('city_id')
-        city_dao.delete_city(city_id)
+        area_dao = AreaDAO()
+        area_id = request.args.get('area_id')
+        area_dao.delete_area(area_id)
         return redirect(url_for('admin_view_area'))
     except Exception as ex:
         print("in admin_delete_area route exception occured>>>>>>>>>>", ex)
-        
+
 
 @app.route('/admin/edit_area', methods=['get'])
 def admin_edit_area():
     try:
-        city_vo = CityVO()
-        city_dao = CityDAO()
+        area_vo = AreaVO()
+        area_dao = AreaDAO()
         state_dao = StateDAO()
 
-        city_vo.city_id = request.args.get('city_id')
-        city_vo_list = city_dao.edit_city(city_vo)
+        area_vo.area_id = request.args.get('area_id')
+        area_vo_list = area_dao.edit_area(area_vo)
         state_vo_list = state_dao.view_state()
-        return render_template('admin/editarea.html', state_vo_list=state_vo_list,
-                               city_vo_list=city_vo_list)
+        print('state_vo_list>>>>>>', state_vo_list)
+        return render_template('admin/editArea.html', state_vo_list=state_vo_list,
+                               area_vo_list=area_vo_list)
     except Exception as ex:
         print("in admin_edit_area route exception occured>>>>>>>>>>", ex)
-        
-        
+
+
+'''        
 @app.route('/admin/update_area', methods=['POST'])
 def admin_update_area():
     try:

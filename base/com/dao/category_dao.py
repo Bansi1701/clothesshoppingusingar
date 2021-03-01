@@ -15,7 +15,7 @@ class CategoryDAO:
         database.session.delete(category_vo_list)
         database.session.commit()
 
-    def fetch_category_for_edit(self, category_vo):
+    def edit_category(self, category_vo):
         category_vo_list = CategoryVO.query.filter_by(category_id=category_vo.category_id).all()
         return category_vo_list
 

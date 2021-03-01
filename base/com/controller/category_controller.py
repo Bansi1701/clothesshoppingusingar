@@ -1,8 +1,8 @@
 from flask import *
-from base import app
 
-from base.com.vo.category_vo import CategoryVO
+from base import app
 from base.com.dao.category_dao import CategoryDAO
+from base.com.vo.category_vo import CategoryVO
 
 
 @app.route('/admin/load_category')
@@ -61,7 +61,7 @@ def admin_edit_category():
         category_vo = CategoryVO()
         category_dao = CategoryDAO()
         category_vo.category_id = request.args.get('category_id')
-        category_vo_list = category_dao.fetch_category_for_edit(category_vo)
+        category_vo_list = category_dao.edit_category(category_vo)
         return render_template('admin/editCategory.html', category_vo_list=category_vo_list)
 
     except Exception as ex:

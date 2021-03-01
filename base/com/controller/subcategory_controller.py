@@ -1,9 +1,9 @@
 from flask import *
-from base import app
 
+from base import app
+from base.com.dao.category_dao import CategoryDAO
 from base.com.dao.subcategory_dao import SubCategoryDAO
 from base.com.vo.subcategory_vo import SubCategoryVO
-from base.com.dao.category_dao import CategoryDAO
 
 
 @app.route('/admin/load_subcategory', methods=['get'])
