@@ -14,7 +14,7 @@ def admin_load_city():
         return render_template('admin/addCity.html', state_vo_list=state_vo_list)
 
     except Exception as ex:
-        print('admin_view_state route exception occured>>>>>>>>>>', ex)
+        print('admin_view_city route exception occured>>>>>>>>>>', ex)
         
         
 @app.route('/admin/insert_city',methods=['post'])
