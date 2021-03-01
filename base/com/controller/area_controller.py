@@ -59,7 +59,7 @@ def admin_view_area():
     try:
         area_dao = AreaDAO()
         area_vo_list = area_dao.view_area()
-        return render_template('admin/viewarea.html', area_vo_list=area_vo_list)
+        return render_template('admin/viewArea.html', area_vo_list=area_vo_list)
 
     except Exception as ex:
         print("admin_view_area route exception occured>>>>>>>>>>", ex)
@@ -82,13 +82,17 @@ def admin_edit_area():
         area_vo = AreaVO()
         area_dao = AreaDAO()
         state_dao = StateDAO()
+        city_dao = CityDAO()
 
         area_vo.area_id = request.args.get('area_id')
         area_vo_list = area_dao.edit_area(area_vo)
         state_vo_list = state_dao.view_state()
+        city_vo_list=city_dao.view_city()
         print('state_vo_list>>>>>>', state_vo_list)
+        print('area_vo_list>>>>>>', area_vo_list)
+        print('city_vo_list>>>>>>', city_vo_list)
         return render_template('admin/editArea.html', state_vo_list=state_vo_list,
-                               area_vo_list=area_vo_list)
+                               area_vo_list=area_vo_list,city_vo_list=city_vo_list)
     except Exception as ex:
         print("in admin_edit_area route exception occured>>>>>>>>>>", ex)
 

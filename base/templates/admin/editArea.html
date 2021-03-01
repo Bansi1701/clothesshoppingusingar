@@ -66,11 +66,6 @@
                                     </div>
                                     <div class="card-body">
                                         <div class="form-group">
-                                            <label>Area Name</label>
-                                            <input type="text" value="{{ area_vo_list[0].area_name }}" name="area_name"
-                                                   class="form-control" required="">
-                                        </div>
-                                        <div class="form-group">
                                             <label>State Name</label>
                                             <select class="form-control" id="state_id" name="state_id"
                                                     onchange="city_ajax()" required>
@@ -85,17 +80,23 @@
                                             <label>City Name</label>
                                             <select class="form-control" id="city_id" name="city_id" required>
                                                 <option value disabled selected>Select city</option>
+                                                 {% for city in city_vo_list %}
+                                                    <option value="{{ city[0].city_id }}"
+                                                            {% if city[0].city_id == area_vo_list[0].area_city_id %}selected{% endif %}>
+                                                            {% if state_vo_list[0].state_id==city[0].city_state_id %}{{ city[0].city_name }}{% endif %}
+                                                    </option>
+                                                {% endfor %}
                                             </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Area Name</label>
+                                            <input type="text" value="{{ area_vo_list[0].area_name }}" name="area_name"
+                                                   class="form-control" required="">
                                         </div>
                                         <div class="form-group">
                                             <label>Area Pincode</label>
                                             <input type="number" value="{{ area_vo_list[0].area_pincode }}"
                                                    name="area_pincode" class="form-control" required="">
-                                        </div>
-                                        <div class="form-group mb-0">
-                                            <label>Area Description</label>
-                                            <textarea name="area_description" class="form-control"
-                                                      required="">{{ area_vo_list[0].area_description }}</textarea>
                                         </div>
                                     </div>
                                     <div class="card-footer">
