@@ -1,11 +1,7 @@
-from flask import *
-
-from base import app
+from base.com.controller.login_controller import *
 from base.com.dao.category_dao import CategoryDAO
 from base.com.dao.subcategory_dao import SubCategoryDAO
 from base.com.vo.subcategory_vo import SubCategoryVO
-from base.com.controller.login_controller import *
-
 
 
 @app.route('/admin/load_subcategory', methods=['get'])
@@ -17,7 +13,6 @@ def admin_load_subcategory():
             return render_template('admin/addSubcategory.html', category_vo_list=category_vo_list)
         else:
             return redirect(url_for('admin_logout_session'))
-
     except Exception as ex:
         print('admin_view_category route exception occured>>>>>>>>>>', ex)
 
@@ -37,7 +32,6 @@ def admin_insert_subcategory():
             return redirect(url_for('admin_view_subcategory'))
         else:
             return redirect(url_for('admin_logout_session'))
-
     except Exception as ex:
         print("admin_insert_subcategory route exception occured>>>>>>>>>>", ex)
 
@@ -51,7 +45,6 @@ def admin_view_subcategory():
             return render_template('admin/viewSubcategory.html', subcategory_vo_list=subcategory_vo_list)
         else:
             return redirect(url_for('admin_logout_session'))
-
     except Exception as ex:
         print("admin_view_subcategory route exception occured>>>>>>>>>>", ex)
 
