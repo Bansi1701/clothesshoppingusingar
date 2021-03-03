@@ -1,4 +1,4 @@
-from base.com.controller.login_controller import *
+from base.com.controller.login_controller import admin_login_session
 from base.com.dao.category_dao import CategoryDAO
 from base.com.dao.subcategory_dao import SubCategoryDAO
 from base.com.vo.subcategory_vo import SubCategoryVO
