@@ -7,6 +7,7 @@ from base.com.dao.city_dao import CityDAO
 from base.com.dao.state_dao import StateDAO
 from base.com.vo.area_vo import AreaVO
 from base.com.vo.city_vo import CityVO
+from base.com.vo.state_vo import StateVO
 
 
 @app.route('/admin/load_area', methods=['get'])
@@ -105,12 +106,15 @@ def admin_edit_area():
             area_vo = AreaVO()
             area_dao = AreaDAO()
             state_dao = StateDAO()
+            state_vo = StateVO()
+            city_vo = CityVO()
             city_dao = CityDAO()
 
             area_vo.area_id = request.args.get('areaId')
+            city_vo.city_state_id = request.args.get('stateId')
             area_vo_list = area_dao.edit_area(area_vo)
             state_vo_list = state_dao.view_state()
-            city_vo_list = city_dao.view_city()
+            city_vo_list = city_dao.view_ajax_area_city(city_vo)
             return render_template('admin/editArea.html', state_vo_list=state_vo_list,
                                    area_vo_list=area_vo_list, city_vo_list=city_vo_list)
         else:
