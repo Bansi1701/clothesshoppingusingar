@@ -6,15 +6,18 @@ from base.com.dao.city_dao import CityDAO
 from base.com.dao.state_dao import StateDAO
 from base.com.vo.area_vo import AreaVO
 from base.com.vo.city_vo import CityVO
+from base.com.controller.login_controller import admin_login_session
 
 
 @app.route('/admin/load_area', methods=['get'])
 def admin_load_area():
     try:
-        state_dao = StateDAO()
-        state_vo_list = state_dao.view_state()
-        return render_template('admin/addArea.html', state_vo_list=state_vo_list)
-
+        if admin_login_session() == 'admin':
+            state_dao = StateDAO()
+            state_vo_list = state_dao.view_state()
+            return render_template('admin/addArea.html', state_vo_list=state_vo_list)
+        else:
+            return redirect(url_for('admin_logout_session'))
     except Exception as ex:
         print('admin_load_area route exception occured>>>>>>>>>>', ex)
 
@@ -22,15 +25,19 @@ def admin_load_area():
 @app.route('/admin/ajax_area_city', methods=['get'])
 def admin_ajax_area_city():
     try:
-        city_dao = CityDAO()
-        city_vo = CityVO()
+        if admin_login_session() == 'admin':
 
-        city_vo.city_state_id = request.args.get('stateId')
-        city_vo_list = city_dao.view_ajax_area_city(city_vo)
+            city_dao = CityDAO()
+            city_vo = CityVO()
 
-        ajax_area_city = [i.as_dict() for i in city_vo_list]
+            city_vo.city_state_id = request.args.get('stateId')
+            city_vo_list = city_dao.view_ajax_area_city(city_vo)
 
-        return jsonify(ajax_area_city)
+            ajax_area_city = [i.as_dict() for i in city_vo_list]
+
+            return jsonify(ajax_area_city)
+        else:
+            return redirect(url_for('admin_logout_session'))
 
     except Exception as ex:
         print('admin_ajax_area_city route exception occured>>>>>>>>>>', ex)
@@ -39,16 +46,20 @@ def admin_ajax_area_city():
 @app.route('/admin/insert_area', methods=['post'])
 def admin_add_area():
     try:
-        area_vo = AreaVO()
-        area_dao = AreaDAO()
+        if admin_login_session() == 'admin':
 
-        area_vo.area_name = request.form.get('areaName')
-        area_vo.area_pincode = request.form.get('areaPincode')
-        area_vo.area_city_id = request.form.get('areaCityId')
-        area_vo.area_state_id = request.form.get('areaStateId')
+            area_vo = AreaVO()
+            area_dao = AreaDAO()
 
-        area_dao.insert_area(area_vo)
-        return redirect(url_for('admin_view_area'))
+            area_vo.area_name = request.form.get('areaName')
+            area_vo.area_pincode = request.form.get('areaPincode')
+            area_vo.area_city_id = request.form.get('areaCityId')
+            area_vo.area_state_id = request.form.get('areaStateId')
+
+            area_dao.insert_area(area_vo)
+            return redirect(url_for('admin_view_area'))
+        else:
+            return redirect(url_for('admin_logout_session'))
 
     except Exception as ex:
         print("admin_insert_area route exception occured>>>>>>>>>>", ex)
@@ -57,10 +68,14 @@ def admin_add_area():
 @app.route('/admin/view_area', methods=['get'])
 def admin_view_area():
     try:
-        area_dao = AreaDAO()
-        area_vo_list = area_dao.view_area()
-        print(area_vo_list)
-        return render_template('admin/viewArea.html', area_vo_list=area_vo_list)
+        if admin_login_session() == 'admin':
+
+            area_dao = AreaDAO()
+            area_vo_list = area_dao.view_area()
+            print(area_vo_list)
+            return render_template('admin/viewArea.html', area_vo_list=area_vo_list)
+        else:
+            return redirect(url_for('admin_logout_session'))
 
     except Exception as ex:
         print("admin_view_area route exception occured>>>>>>>>>>", ex)
@@ -69,10 +84,15 @@ def admin_view_area():
 @app.route('/admin/delete_area', methods=['get'])
 def admin_delete_area():
     try:
-        area_dao = AreaDAO()
-        area_id = request.args.get('areaId')
-        area_dao.delete_area(area_id)
-        return redirect(url_for('admin_view_area'))
+        if admin_login_session() == 'admin':
+
+            area_dao = AreaDAO()
+            area_id = request.args.get('areaId')
+            area_dao.delete_area(area_id)
+            return redirect(url_for('admin_view_area'))
+        else:
+            return redirect(url_for('admin_logout_session'))
+
     except Exception as ex:
         print("in admin_delete_area route exception occured>>>>>>>>>>", ex)
 
@@ -80,17 +100,22 @@ def admin_delete_area():
 @app.route('/admin/edit_area', methods=['get'])
 def admin_edit_area():
     try:
-        area_vo = AreaVO()
-        area_dao = AreaDAO()
-        state_dao = StateDAO()
-        city_dao = CityDAO()
+        if admin_login_session() == 'admin':
 
-        area_vo.area_id = request.args.get('areaId')
-        area_vo_list = area_dao.edit_area(area_vo)
-        state_vo_list = state_dao.view_state()
-        city_vo_list = city_dao.view_city()
-        return render_template('admin/editArea.html', state_vo_list=state_vo_list,
-                               area_vo_list=area_vo_list, city_vo_list=city_vo_list)
+            area_vo = AreaVO()
+            area_dao = AreaDAO()
+            state_dao = StateDAO()
+            city_dao = CityDAO()
+
+            area_vo.area_id = request.args.get('areaId')
+            area_vo_list = area_dao.edit_area(area_vo)
+            state_vo_list = state_dao.view_state()
+            city_vo_list = city_dao.view_city()
+            return render_template('admin/editArea.html', state_vo_list=state_vo_list,
+                                   area_vo_list=area_vo_list, city_vo_list=city_vo_list)
+        else:
+            return redirect(url_for('admin_logout_session'))
+
     except Exception as ex:
         print("in admin_edit_area route exception occured>>>>>>>>>>", ex)
 
@@ -98,16 +123,21 @@ def admin_edit_area():
 @app.route('/admin/update_area', methods=['POST'])
 def admin_update_area():
     try:
-        area_vo = AreaVO()
-        area_dao = AreaDAO()
+        if admin_login_session() == 'admin':
 
-        area_vo.area_id = request.form.get('areaId')
-        area_vo.area_name = request.form.get('areaName')
-        area_vo.area_pincode = request.form.get('areaPincode')
-        area_vo.area_city_id = request.form.get('cityId')
-        area_vo.area_state_id = request.form.get('stateId')
+            area_vo = AreaVO()
+            area_dao = AreaDAO()
 
-        area_dao.update_area(area_vo)
-        return redirect(url_for('admin_view_area'))
+            area_vo.area_id = request.form.get('areaId')
+            area_vo.area_name = request.form.get('areaName')
+            area_vo.area_pincode = request.form.get('areaPincode')
+            area_vo.area_city_id = request.form.get('cityId')
+            area_vo.area_state_id = request.form.get('stateId')
+
+            area_dao.update_area(area_vo)
+            return redirect(url_for('admin_view_area'))
+        else:
+            return redirect(url_for('admin_logout_session'))
+
     except Exception as ex:
         print("in admin_update_area route exception occured>>>>>>>>>>", ex)
