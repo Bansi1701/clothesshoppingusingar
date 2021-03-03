@@ -1,10 +1,10 @@
 from flask import *
 
 from base import app
+from base.com.controller.login_controller import admin_login_session
 from base.com.dao.city_dao import CityDAO
 from base.com.dao.state_dao import StateDAO
 from base.com.vo.city_vo import CityVO
-from base.com.controller.login_controller import admin_login_session
 
 
 @app.route('/admin/load_city', methods=['get'])
@@ -35,7 +35,7 @@ def admin_add_city():
             city_dao.insert_city(city_vo)
             return redirect(url_for('admin_view_city'))
         else:
-             return redirect(url_for('admin_logout_session'))
+            return redirect(url_for('admin_logout_session'))
 
     except Exception as ex:
         print("admin_insert_city route exception occured>>>>>>>>>>", ex)
@@ -49,7 +49,7 @@ def admin_view_city():
             city_vo_list = city_dao.view_city()
             return render_template('admin/viewCity.html', city_vo_list=city_vo_list)
         else:
-             return redirect(url_for('admin_logout_session'))
+            return redirect(url_for('admin_logout_session'))
     except Exception as ex:
         print("admin_view_city route exception occured>>>>>>>>>>", ex)
 
@@ -63,7 +63,7 @@ def admin_delete_city():
             city_dao.delete_city(city_id)
             return redirect(url_for('admin_view_city'))
         else:
-             return redirect(url_for('admin_logout_session'))
+            return redirect(url_for('admin_logout_session'))
     except Exception as ex:
         print("in admin_delete_city route exception occured>>>>>>>>>>", ex)
 
@@ -82,7 +82,7 @@ def admin_edit_city():
             return render_template('admin/editCity.html', state_vo_list=state_vo_list,
                                    city_vo_list=city_vo_list)
         else:
-             return redirect(url_for('admin_logout_session'))
+            return redirect(url_for('admin_logout_session'))
     except Exception as ex:
         print("in admin_edit_city route exception occured>>>>>>>>>>", ex)
 
@@ -101,6 +101,6 @@ def admin_update_city():
             city_dao.update_city(city_vo)
             return redirect(url_for('admin_view_city'))
         else:
-             return redirect(url_for('admin_logout_session'))
+            return redirect(url_for('admin_logout_session'))
     except Exception as ex:
         print("in admin_update_city route exception occured>>>>>>>>>>", ex)
