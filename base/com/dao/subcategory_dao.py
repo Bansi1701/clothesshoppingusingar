@@ -1,4 +1,3 @@
-from base.com.vo.category_vo import *
 from base.com.vo.subcategory_vo import *
 
 

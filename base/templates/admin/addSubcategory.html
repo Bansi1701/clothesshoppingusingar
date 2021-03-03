@@ -35,7 +35,7 @@
                                     <div class="card-body">
                                         <div class="form-group">
                                             <label>Category Name</label>
-                                            <select class="form-control" name="category_id" required>
+                                            <select class="form-control" name="categoryId" required>
                                                 <option value disabled selected>Select category</option>
                                                 {% for category in category_vo_list %}
                                                     <option value="{{ category.category_id }}">{{ category.category_name }}</option>
@@ -45,11 +45,11 @@
                                         </div>
                                         <div class="form-group">
                                             <label>Subcategory Name</label>
-                                            <input type="text" name="subcategory_name" class="form-control" required="">
+                                            <input type="text" name="subcategoryName" class="form-control" required="">
                                         </div>
                                         <div class="form-group mb-0">
                                             <label>Subcategory Description</label>
-                                            <textarea name="subcategory_description" class="form-control"
+                                            <textarea name="subcategoryDescription" class="form-control"
                                                       required=""></textarea>
                                         </div>
                                     </div>

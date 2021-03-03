@@ -18,10 +18,10 @@
 
             var ajax = new XMLHttpRequest();
             var option = document.createElement("option");
-            var state_id = document.getElementById("state_id");
-            var city_id = document.getElementById("city_id");
+            var state_id = document.getElementById("areaStateId");
+            var city_id = document.getElementById("areaCityId");
 
-            $('#city_id').empty();
+            $('#areaCityId').empty();
             option.value = null;
             option.text = "Select city";
             option.disabled = true;
@@ -41,7 +41,7 @@
                     }
                 }
             }
-            ajax.open("get", "/admin/ajax_area_city?state_id=" + state_id.value, true);
+            ajax.open("get", "/admin/ajax_area_city?stateId=" + state_id.value, true);
             ajax.send();
         }
     </script>
@@ -67,7 +67,7 @@
                                     <div class="card-body">
                                         <div class="form-group">
                                             <label>State Name</label>
-                                            <select class="form-control" id="state_id" name="state_id"
+                                            <select class="form-control" id="areaStateId" name="areaStateId"
                                                     onchange="city_ajax()" required>
                                                 <option value disabled selected>Select state</option>
                                                 {% for state in state_vo_list %}
@@ -77,19 +77,19 @@
                                         </div>
                                         <div class="form-group">
                                             <label>City Name</label>
-                                            <select class="form-control" id="city_id" name="city_id" required>
+                                            <select class="form-control" id="areaCityId" name="areaCityId" required>
                                                 <option value disabled selected>Select city</option>
                                             </select>
                                         </div>
 
                                         <div class="form-group">
                                             <label>Area Name</label>
-                                            <input type="text" name="area_name" class="form-control" required="">
+                                            <input type="text" name="areaName" class="form-control" required="">
                                         </div>
 
                                         <div class="form-group">
                                             <label>Area Pincode</label>
-                                            <input type="number" name="area_pincode" class="form-control" required="">
+                                            <input type="number" name="areaPincode" class="form-control" required="">
                                         </div>
                                     </div>
                                     <div class="card-footer">

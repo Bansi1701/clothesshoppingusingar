@@ -13,7 +13,7 @@ global_login_secretkey_set = {0}
 @app.route('/', methods=['GET'])
 def admin_load_login():
     try:
-        return render_template('login.html')
+        return render_template('admin/index.html')
     except Exception as ex:
         print("admin_load_login route exception occured>>>>>>>>>>", ex)
 
@@ -40,11 +40,11 @@ def admin_validate_login():
         if len_login_list == 0:
             error_message = 'username or password is incorrect !'
             flash(error_message)
-            return render_template('admin/login.html')
+            return redirect('/')
         elif login_list[0]['login_status'] == 'inactive':
             error_message = 'You have been temporarily blocked by website admin !'
             flash(error_message)
-            return render_template('admin/login.html')
+            return redirect('/')
         else:
             for row1 in login_list:
                 login_id = row1['login_id']

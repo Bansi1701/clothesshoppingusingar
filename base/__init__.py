@@ -1,5 +1,10 @@
+import warnings
+
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
+
+warnings.filterwarnings("ignore", category=FutureWarning)
+warnings.filterwarnings("ignore", category=DeprecationWarning)
 
 app = Flask(__name__)
 

@@ -20,8 +20,8 @@ def admin_insert_state():
         state_vo = StateVO()
         state_dao = StateDAO()
 
-        state_vo.state_name = request.form.get('state_name')
-        state_vo.state_description = request.form.get('state_description')
+        state_vo.state_name = request.form.get('stateName')
+        state_vo.state_description = request.form.get('stateDescription')
 
         state_dao.insert_state(state_vo)
 
@@ -47,7 +47,7 @@ def admin_delete_state():
     try:
         state_vo = StateVO()
         state_dao = StateDAO()
-        state_vo.state_id = request.args.get('state_id')
+        state_vo.state_id = request.args.get('stateId')
         state_dao.delete_state(state_vo)
         return redirect(url_for('admin_view_state'))
 
@@ -60,7 +60,7 @@ def admin_edit_state():
     try:
         state_vo = StateVO()
         state_dao = StateDAO()
-        state_vo.state_id = request.args.get('state_id')
+        state_vo.state_id = request.args.get('stateId')
         state_vo_list = state_dao.edit_state(state_vo)
         return render_template('admin/editState.html', state_vo_list=state_vo_list)
 
@@ -73,9 +73,9 @@ def admin_update_state():
     try:
         state_vo = StateVO()
         state_dao = StateDAO()
-        state_vo.state_id = request.form.get('state_id')
-        state_vo.state_name = request.form.get('state_name')
-        state_vo.state_description = request.form.get('state_description')
+        state_vo.state_id = request.form.get('stateId')
+        state_vo.state_name = request.form.get('stateName')
+        state_vo.state_description = request.form.get('stateDescription')
 
         state_dao.update_state(state_vo)
         return redirect(url_for('admin_view_state'))

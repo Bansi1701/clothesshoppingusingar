@@ -23,9 +23,9 @@ def admin_insert_subcategory():
         subcategory_vo = SubCategoryVO()
         subcategory_dao = SubCategoryDAO()
 
-        subcategory_vo.subcategory_name = request.form.get('subcategory_name')
-        subcategory_vo.subcategory_description = request.form.get('subcategory_description')
-        subcategory_vo.subcategory_category_id = request.form.get('category_id')
+        subcategory_vo.subcategory_name = request.form.get('subcategoryName')
+        subcategory_vo.subcategory_description = request.form.get('subcategoryDescription')
+        subcategory_vo.subcategory_category_id = request.form.get('categoryId')
 
         subcategory_dao.insert_subcategory(subcategory_vo)
         return redirect(url_for('admin_view_subcategory'))
@@ -49,7 +49,7 @@ def admin_view_subcategory():
 def admin_delete_subcategory():
     try:
         subcategory_dao = SubCategoryDAO()
-        subcategory_id = request.args.get('subcategory_id')
+        subcategory_id = request.args.get('subcategoryId')
         subcategory_dao.delete_subcategory(subcategory_id)
         return redirect(url_for('admin_view_subcategory'))
     except Exception as ex:
@@ -63,7 +63,7 @@ def admin_edit_subcategory():
         subcategory_dao = SubCategoryDAO()
         category_dao = CategoryDAO()
 
-        subcategory_vo.subcategory_id = request.args.get('subcategory_id')
+        subcategory_vo.subcategory_id = request.args.get('subcategoryId')
         subcategory_vo_list = subcategory_dao.edit_subcategory(subcategory_vo)
         category_vo_list = category_dao.view_category()
         return render_template('admin/editSubcategory.html', category_vo_list=category_vo_list,
@@ -78,10 +78,10 @@ def admin_update_subcategory():
         subcategory_vo = SubCategoryVO()
         subcategory_dao = SubCategoryDAO()
 
-        subcategory_vo.subcategory_id = request.form.get('subcategory_id')
-        subcategory_vo.subcategory_name = request.form.get('subcategory_name')
-        subcategory_vo.subcategory_description = request.form.get('subcategory_description')
-        subcategory_vo.subcategory_category_id = request.form.get('subcategory_category_id')
+        subcategory_vo.subcategory_id = request.form.get('subcategoryId')
+        subcategory_vo.subcategory_name = request.form.get('subcategoryName')
+        subcategory_vo.subcategory_description = request.form.get('subcategoryDescription')
+        subcategory_vo.subcategory_category_id = request.form.get('subcategoryCategoryId')
         subcategory_dao.update_subcategory(subcategory_vo)
         return redirect(url_for('admin_view_subcategory'))
     except Exception as ex:

@@ -35,7 +35,7 @@
                                     <div class="card-body">
                                         <div class="form-group">
                                             <label>State Name</label>
-                                            <select class="form-control" name="state_id" required>
+                                            <select class="form-control" name="stateId" required>
                                                 <option value disabled selected>Select state</option>
                                                 {% for state in state_vo_list %}
                                                     <option value="{{ state.state_id }}">{{ state.state_name }}</option>
@@ -45,11 +45,11 @@
                                         </div>
                                         <div class="form-group">
                                             <label>City Name</label>
-                                            <input type="text" name="city_name" class="form-control" required="">
+                                            <input type="text" name="cityName" class="form-control" required="">
                                         </div>
                                         <div class="form-group mb-0">
                                             <label>City Description</label>
-                                            <textarea name="city_description" class="form-control"
+                                            <textarea name="cityDescription" class="form-control"
                                                       required=""></textarea>
                                         </div>
                                     </div>

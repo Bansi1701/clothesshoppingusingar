@@ -20,8 +20,8 @@ def admin_insert_category():
         category_vo = CategoryVO()
         category_dao = CategoryDAO()
 
-        category_vo.category_name = request.form.get('category_name')
-        category_vo.category_description = request.form.get('category_description')
+        category_vo.category_name = request.form.get('categoryName')
+        category_vo.category_description = request.form.get('categoryDescription')
 
         category_dao.insert_category(category_vo)
 
@@ -47,7 +47,7 @@ def admin_delete_category():
     try:
         category_vo = CategoryVO()
         category_dao = CategoryDAO()
-        category_vo.category_id = request.args.get('category_id')
+        category_vo.category_id = request.args.get('categoryId')
         category_dao.delete_category(category_vo)
         return redirect(url_for('admin_view_category'))
 
@@ -60,7 +60,7 @@ def admin_edit_category():
     try:
         category_vo = CategoryVO()
         category_dao = CategoryDAO()
-        category_vo.category_id = request.args.get('category_id')
+        category_vo.category_id = request.args.get('categoryId')
         category_vo_list = category_dao.edit_category(category_vo)
         return render_template('admin/editCategory.html', category_vo_list=category_vo_list)
 
@@ -73,9 +73,9 @@ def admin_update_category():
     try:
         category_vo = CategoryVO()
         category_dao = CategoryDAO()
-        category_vo.category_id = request.form.get('category_id')
-        category_vo.category_name = request.form.get('category_name')
-        category_vo.category_description = request.form.get('category_description')
+        category_vo.category_id = request.form.get('categoryId')
+        category_vo.category_name = request.form.get('categoryName')
+        category_vo.category_description = request.form.get('categoryDescription')
 
         category_dao.update_category(category_vo)
         return redirect(url_for('admin_view_category'))
