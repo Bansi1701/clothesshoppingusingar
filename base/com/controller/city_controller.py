@@ -58,9 +58,11 @@ def admin_view_city():
 def admin_delete_city():
     try:
         if admin_login_session() == 'admin':
+            city_vo = CityVO()
             city_dao = CityDAO()
             city_id = request.args.get('cityId')
-            city_dao.delete_city(city_id)
+            city_vo.city_id = city_id
+            city_dao.delete_city(city_vo)
             return redirect(url_for('admin_view_city'))
         else:
             return redirect(url_for('admin_logout_session'))

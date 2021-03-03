@@ -1,12 +1,12 @@
 from flask import *
 
 from base import app
+from base.com.controller.login_controller import admin_login_session
 from base.com.dao.area_dao import AreaDAO
 from base.com.dao.city_dao import CityDAO
 from base.com.dao.state_dao import StateDAO
 from base.com.vo.area_vo import AreaVO
 from base.com.vo.city_vo import CityVO
-from base.com.controller.login_controller import admin_login_session
 
 
 @app.route('/admin/load_area', methods=['get'])
