@@ -37,9 +37,8 @@
                                         <input type="hidden" name="cityId"
                                                value="{{ city_vo_list[0].city_id }}">
                                         <div class="form-group">
-                                            <label>State Name</label>
                                             <select class="form-control" name="cityStateId" required>
-                                                <option value disabled selected>Select one option</option>
+                                                <option value disabled selected>State Name</option>
                                                 {% for state in state_vo_list %}
                                                     <option value="{{ state.state_id }}"
                                                             {% if state.state_id == city_vo_list[0].city_state_id %}
@@ -61,7 +60,6 @@
                                     </div>
                                     <div class="card-footer">
                                         <button type="submit" class="btn btn-primary">Submit</button>
-                                        <button type="reset" class="btn btn-primary">Reset</button>
                                     </div>
                                 </form>
                             </div>

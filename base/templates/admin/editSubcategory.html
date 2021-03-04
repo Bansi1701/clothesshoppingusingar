@@ -31,15 +31,14 @@
                             <div class="card">
                                 <form action="/admin/update_subcategory" method="post">
                                     <div class="card-header">
-                                        <h4>Add Category</h4>
+                                        <h4>Edit Subcategory</h4>
                                     </div>
                                     <div class="card-body">
                                         <input type="hidden" name="subcategoryId"
                                                value="{{ subcategory_vo_list[0].subcategory_id }}">
                                         <div class="form-group">
-                                            <label>Category Name</label>
                                             <select class="form-control" name="subcategoryCategoryId" required>
-                                                <option value disabled selected>Select one option</option>
+                                                <option value disabled selected>Category Name</option>
                                                 {% for category in category_vo_list %}
                                                     <option value="{{ category.category_id }}"
                                                             {% if category.category_id == subcategory_vo_list[0].subcategory_category_id %}
@@ -61,7 +60,6 @@
                                     </div>
                                     <div class="card-footer">
                                         <button type="submit" class="btn btn-primary">Submit</button>
-                                        <button type="reset" class="btn btn-primary">Reset</button>
                                     </div>
                                 </form>
                             </div>

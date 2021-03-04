@@ -36,7 +36,6 @@
 
                         option.value = json[i].city_id;
                         option.text = json[i].city_name;
-                        alert(option.text);
 
                         city_id.options.add(option);
                     }
@@ -69,10 +68,9 @@
                                         <div class="form-group">
                                             <input type="hidden" name="areaId"
                                                    value="{{ area_vo_list[0].area_id }}">
-                                            <label>State Name</label>
                                             <select class="form-control" id="areaStateId" name="stateId"
                                                     onchange="city_ajax()" required>
-                                                <option value disabled selected>Select state</option>
+                                                <option value disabled selected>State Name</option>
                                                 {% for state in state_vo_list %}
                                                     <option value="{{ state.state_id }}"
                                                             {% if state.state_id == area_vo_list[0].area_state_id %}
@@ -81,9 +79,8 @@
                                             </select>
                                         </div>
                                         <div class="form-group">
-                                            <label>City Name</label>
                                             <select class="form-control" id="areaCityId" name="cityId" required>
-                                                <option value disabled selected>Select city</option>
+                                                <option value disabled selected>City Name</option>
                                                 {% for city in city_vo_list %}
                                                     <option value="{{ city.city_id }}"
                                                             {% if city.city_id == area_vo_list[0].area_city_id %}
@@ -106,7 +103,6 @@
                                     </div>
                                     <div class="card-footer">
                                         <button type="submit" class="btn btn-primary">Submit</button>
-                                        <button type="reset"  class="btn btn-primary" onclick="city_ajax()">Reset</button>
                                     </div>
                                 </form>
                             </div>

@@ -34,9 +34,8 @@
                                     </div>
                                     <div class="card-body">
                                         <div class="form-group">
-                                            <label>Category Name</label>
                                             <select class="form-control" name="categoryId" required>
-                                                <option value disabled selected>Select category</option>
+                                                <option value disabled selected>Category Name</option>
                                                 {% for category in category_vo_list %}
                                                     <option value="{{ category.category_id }}">{{ category.category_name }}</option>
                                                 {% endfor %}
@@ -55,7 +54,6 @@
                                     </div>
                                     <div class="card-footer">
                                         <button type="submit" class="btn btn-primary">Submit</button>
-                                        <button type="reset" class="btn btn-primary">Reset</button>
                                     </div>
                                 </form>
                             </div>

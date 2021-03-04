@@ -34,9 +34,8 @@
                                     </div>
                                     <div class="card-body">
                                         <div class="form-group">
-                                            <label>State Name</label>
                                             <select class="form-control" name="stateId" required>
-                                                <option value disabled selected>Select state</option>
+                                                <option value disabled selected>State Name</option>
                                                 {% for state in state_vo_list %}
                                                     <option value="{{ state.state_id }}">{{ state.state_name }}</option>
                                                 {% endfor %}
@@ -55,7 +54,7 @@
                                     </div>
                                     <div class="card-footer">
                                         <button type="submit" class="btn btn-primary">Submit</button>
-                                        <button type="reset" class="btn btn-primary">Reset</button>
+
                                     </div>
                                 </form>
                             </div>
