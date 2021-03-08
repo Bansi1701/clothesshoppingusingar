@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 
 <head>
     <meta charset="UTF-8">
@@ -55,13 +55,15 @@
                                     </div>
                                 </div>
 
+
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
                                         Login
                                     </button>
                                     {% with message = get_flashed_messages() %}
                                         {% if message %}
-                                            <div class="form-group"><p style="color: red; font-size: 12px">{{ message[0] }}</p></div>
+                                            <div class="form-group"><p
+                                                    style="color: red; font-size: 12px">{{ message[0] }}</p></div>
                                         {% endif %}
                                     {% endwith %}
                                 </div>
@@ -84,6 +86,7 @@
 <script src="../../static/adminResources/js/scripts.js"></script>
 <!-- Custom JS File -->
 <script src="../../static/adminResources/js/iziToast.min.js"></script>
+<script src="../../static/adminResources/js/toastr.js"></script>
 <script src="../../static/adminResources/js/custom.js"></script>
 
 </body>
