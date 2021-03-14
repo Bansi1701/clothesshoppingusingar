@@ -9,13 +9,15 @@ from base.com.vo.login_vo import LoginVO
 global_loginvo_list = []
 global_login_secretkey_set = {0}
 
-#for user(change after login security)
+
+# for user(change after login security)
 @app.route('/user', methods=['GET'])
 def user():
     try:
         return render_template('user/index.html')
     except Exception as ex:
         print("admin_load_login route exception occured>>>>>>>>>>", ex)
+
 
 @app.route('/', methods=['GET'])
 def admin_load_login():

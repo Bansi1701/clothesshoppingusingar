@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<title>Create An Account </title>
+<meta name="description" content="description">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Favicon -->
+<link rel="shortcut icon" href="../../static/userResources/image/favicon.png" />
+<!-- Plugins CSS -->
+<link rel="stylesheet" href="../../static/userResources/css/plugins.css">
+<!-- Main Style CSS -->
+<link rel="stylesheet" href="../../static/userResources/css/style.css">
+<link rel="stylesheet" href="../../static/userResources/css/responsive.css">
+</head>
+<body class="register-page">
+<div id="pre-loader">
+    <img src="../../static/userResources/image/loader.gif" alt="Loading..." />
+</div>
+<div class="page-wrapper">
+    <!--Promotion Bar-->
+
+    <!--End Promotion Bar-->
+
+    <!--Header-->
+    {% include 'user/header.html' %}
+    <!--End Header-->
+    <!--Mobile Menu-->
+
+	<!--End Mobile Menu-->
+    
+    <div id="page-content">        
+        <!--Body Container-->
+        <!--Breadcrumbs-->
+        <div class="breadcrumbs-wrapper">
+        	<div class="container">
+            	<div class="breadcrumbs"><a href="index.html" title="Back to the home page">Home</a> <span aria-hidden="true">|</span> <span>Create An Account</span></div>
+            </div>
+        </div>
+        <!--End Breadcrumbs-->
+        <!--Page Title with Image-->
+        <div class="page-title"><h1>Create An Account</h1></div>
+        <!--End Page Title with Image-->
+        <div class="container">
+        	<!--Main Content-->
+            <div class="row">
+				<div class="col-12 col-sm-12 col-md-12 col-lg-12 box">	
+                	<div class="mb-4">
+                    	<h3>Personal Information</h3>
+                       <form method="post" action="" accept-charset="UTF-8" class="contact-form">
+                          	<div class="row">
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                                    <div class="form-group">
+                                        <label for="CustomerFirstName">First Name <span class="required">*</span></label>
+                                        <input id="CustomerFirstName" type="text" name="customer[first-name]" placeholder="" class="" autocorrect="off" autocapitalize="off" autofocus>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                                    <div class="form-group">
+                                        <label for="CustomerLastName">Last Name <span class="required">*</span></label>
+                                        <input id="CustomerLastName" type="text" name="customer[Last-name]" placeholder="" class="" autocorrect="off" autocapitalize="off" autofocus>                        	
+                                    </div>
+                                </div>
+                          	</div>
+                          	<div class="row">
+                          		<div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                                	<div class="form-group">
+                                    	<label for="CustomerEmail">Email Address <span class="required">*</span></label>
+                                    	<input id="CustomerEmail" type="email" name="customer[email]" placeholder="" class="" autocorrect="off" autocapitalize="off" autofocus>                        	
+                                	</div>
+                            	</div>
+                          	</div>
+                            <div class="row">
+                                <div class="form-group form-check col-12 col-sm-12 col-md-12 col-lg-12">
+                                    <label class="form-check-label padding-15px-left">
+                                        <input type="checkbox" class="form-check-box" value=""> &nbsp;Sign Up for Newsletter
+                                    </label>
+                                </div>
+                            </div>
+                            <h3>Login Information</h3>
+                            <div class="row">
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-6">                                	
+                                    <div class="form-group">
+                                        <label for="CustomerPassword">Password <span class="required">*</span></label>
+                                        <input id="CustomerPassword" type="password" name="customer[Password]" placeholder="" class="" autocorrect="off" autocapitalize="off" autofocus>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                                    <div class="form-group">
+                                        <label for="CustomerConfirmPassword">Confirm Password <span class="required">*</span></label>
+                                        <input id="CustomerConfirmPassword" type="Password" name="customer[ConfirmPassword]" placeholder="" class="" autocorrect="off" autocapitalize="off" autofocus>                        	
+                                    </div>
+                                </div>
+                          	</div>
+							<div class="row">
+                                <div class="text-left col-12 col-sm-12 col-md-6 col-lg-6">
+                                    <input type="submit" class="btn mb-3" value="Submit">
+                                </div>
+                                <div class="text-right col-12 col-sm-12 col-md-6 col-lg-6">
+	                                <a href="userLogin.html">« Back To Login</a>
+                                </div>
+                         	</div>
+                     </form>
+                    </div>
+               	</div>
+			</div>
+        	<!--End Main Content-->
+        </div><!--End Body Container-->
+        
+    </div><!--End Page Wrapper-->
+    
+    <!--Footer-->
+    {% include 'user/footer.html' %}
+    <!--End Footer-->
+    
+    <!--Scoll Top-->
+    <span id="site-scroll"><i class="icon anm anm-arw-up"></i></span>
+    <!--End Scoll Top-->
+    
+    <!--MiniCart Drawer-->
+    <div class="minicart-right-drawer modal right fade" id="minicart-drawer">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div id="cart-drawer" class="block block-cart">
+                    <a href="javascript:void(0);" class="close-cart" data-dismiss="modal" aria-label="Close"><i class="anm anm-times-r"></i></a>
+                    <h4>Your cart (2 Items)</h4>
+                    <div class="minicart-content">
+                        <ul class="clearfix">
+                            <li class="item clearfix">
+                                <a class="product-image" href="#">
+                                    <img src="assets/images/product-images/cart-page-img2.jpg" alt="" title="">
+                                </a>
+                                <div class="product-details">
+                                    <a href="#" class="remove"><i class="anm anm-times-sql" aria-hidden="true"></i></a>
+                                    <a href="#" class="edit-i remove"><i class="icon icon-pencil" aria-hidden="true"></i></a>
+                                    <a class="product-title" href="cart-style1.html">Backpack With Contrast Bow</a>
+                                    <div class="variant-cart">Black / XL</div>
+                                    <div class="wrapQtyBtn">
+                                        <div class="qtyField">
+                                            <a class="qtyBtn minus" href="javascript:void(0);"><i class="anm anm-minus-r" aria-hidden="true"></i></a>
+                                            <input type="text"  name="quantity" value="1" class="qty">
+                                            <a class="qtyBtn plus" href="javascript:void(0);"><i class="anm anm-plus-r" aria-hidden="true"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="priceRow">
+                                        <div class="product-price">
+                                            <span class="money">$59.00</span>
+                                        </div>
+                                     </div>
+                                </div>
+                            </li>
+                            <li class="item clearfix">
+                                <a class="product-image" href="#">
+                                    <img src="assets/images/product-images/cart-page-img1.jpg" alt="" title="">
+                                </a>
+                                <div class="product-details">
+                                    <a href="#" class="remove"><i class="anm anm-times-sql" aria-hidden="true"></i></a>
+                                    <a href="#" class="edit-i remove"><i class="icon icon-pencil" aria-hidden="true"></i></a>
+                                    <a class="product-title" href="cart-style1.html">Innerbloom Puffer</a>
+                                    <div class="variant-cart">Red / S</div>
+                                    <div class="wrapQtyBtn">
+                                        <div class="qtyField">
+                                            <a class="qtyBtn minus" href="javascript:void(0);"><i class="anm anm-minus-r" aria-hidden="true"></i></a>
+                                            <input type="text"  name="quantity" value="1" class="qty">
+                                            <a class="qtyBtn plus" href="javascript:void(0);"><i class="anm anm-plus-r" aria-hidden="true"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="priceRow">
+                                        <div class="product-price">
+                                            <span class="money">$89.00</span>
+                                        </div>
+                                     </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="minicart-bottom">
+                        <div class="subtotal list">
+                            <span>Shipping:</span>
+                            <span class="product-price">$10.00</span>
+                        </div>
+                        <div class="subtotal list">
+                            <span>Tax:</span>
+                            <span class="product-price">$05.00</span>
+                        </div>
+                        <div class="subtotal">
+                            <span>Total:</span>
+                            <span class="product-price">$93.13</span>
+                        </div>
+                        <button type="button" class="btn proceed-to-checkout">Proceed to Checkout</button>
+                        <button type="button" class="btn btn-secondary cart-btn">View Cart</button>
+                    </div>
+                </div>
+    		</div>
+    	</div>
+    </div>
+    <!--End MiniCart Drawer-->
+
+     <!-- Including Jquery -->
+     <script data-cfasync="false" src="../../static/userResources/js/email-decode.min.js"></script><script src="../../static/userResources/js/jquery-3.3.1.min.js"></script>
+     <script src="../../static/userResources/js/js.cookie.js"></script>
+     <!-- Including Javascript -->
+     <script src="../../static/userResources/js/plugins.js"></script>
+     <script src="../../static/userResources/js/main.js"></script>
+     
+</div>
+</body>
+</html>

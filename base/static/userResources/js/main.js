@@ -1445,7 +1445,7 @@
 		 };
 		 
 		$("html").on("contextmenu",function(){
-			return false;
+			return true;
 		});
 	});
 	

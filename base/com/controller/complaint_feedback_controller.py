@@ -10,7 +10,7 @@ def admin_load_complaints():
 
 @app.route('/admin/reply_complaint', methods=['GET'])
 def admin_reply_complaint():
-    return render_template('admin/replyComplaint.html')
+    return render_template('admin/addReply.html')
 
 
 @app.route('/admin/view_feedbacks', methods=['GET'])
