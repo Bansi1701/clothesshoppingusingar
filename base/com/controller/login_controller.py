@@ -90,7 +90,7 @@ def admin_validate_login():
 def admin_load_dashboard():
     try:
         if admin_login_session() == 'admin':
-            return render_template('/admin/index.html')
+            return render_template('admin/index.html')
         else:
             return redirect(url_for('admin_logout_session'))
     except Exception as ex:
