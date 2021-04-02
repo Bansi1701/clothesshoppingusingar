@@ -8,6 +8,7 @@ def user():
     except Exception as ex:
         print("admin_load_login route exception occured>>>>>>>>>>", ex)
 
+
 @app.route('/user/shop', methods=['GET'])
 def shop():
     try:
@@ -15,16 +16,18 @@ def shop():
     except Exception as ex:
         print("admin_load_login route exception occured>>>>>>>>>>", ex)
 
-@app.route('/user', methods=['GET'])
-def user():
+
+@app.route('/user/cart', methods=['GET'])
+def cart():
     try:
-        return render_template('user/index.html')
+        return render_template('user/cart.html')
     except Exception as ex:
         print("admin_load_login route exception occured>>>>>>>>>>", ex)
 
-@app.route('/user', methods=['GET'])
-def user():
+
+@app.route('/user/checkout', methods=['GET'])
+def checkout():
     try:
-        return render_template('user/index.html')
+        return render_template('user/checkout.html')
     except Exception as ex:
         print("admin_load_login route exception occured>>>>>>>>>>", ex)
