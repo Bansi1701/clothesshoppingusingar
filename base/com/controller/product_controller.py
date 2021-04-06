@@ -48,19 +48,37 @@ def admin_insert_product():
         if admin_login_session() == 'admin':
 
             product_vo=ProductVO()
+            product_dao=ProductDAO()
 
-            area_vo.area_name = request.form.get('areaName')
-            area_vo.area_pincode = request.form.get('areaPincode')
-            area_vo.area_city_id = request.form.get('areaCityId')
-            area_vo.area_state_id = request.form.get('areaStateId')
+            product_vo.product_category_name=request.form.get('productCategoryId')
+            product_vo.product_subcategory_name=request.form.get('productSubcategoryId')
+            product_vo.product_name=request.form.get('productName')
+            product_vo.product_description=request.form.get('productDescription')
+            product_vo.product_price=request.form.get('productPrice')
 
-            area_dao.insert_area(area_vo)
-            return redirect(url_for('admin_view_area'))
+            product_dao.insert_product(product_vo)
+            return redirect(url_for('admin_view_product'))
         else:
             return redirect(url_for('admin_logout_session'))
 
     except Exception as ex:
-        print("admin_insert_area route exception occured>>>>>>>>>>", ex)
+        print("admin_insert_product route exception occured>>>>>>>>>>", ex)
+
+
+@app.route('/admin/view_product')
+def admin_view_product():
+    try:
+        if admin_login_session() == 'admin':
+
+            product_dao=ProductDAO()
+            product_vo_list = product_dao.view_product()
+            print(product_vo_list)
+            return render_template('admin/viewProduct.html', product_vo_list=product_vo_list)
+        else:
+            return redirect(url_for('admin_logout_session'))
+
+    except Exception as ex:
+        print("admin_view_product route exception occured>>>>>>>>>>", ex)
 
 
 
