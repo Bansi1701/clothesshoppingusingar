@@ -82,3 +82,72 @@ def admin_view_product():
 
 
 
+@app.route('/admin/delete_product', methods=['GET'])
+def admin_delete_product():
+    try:
+        if admin_login_session() == 'admin':
+
+            product_dao = ProductDAO()
+            product_id = request.args.get('productId')
+            product_dao.delete_product(product_id)
+            return redirect(url_for('admin_view_product'))
+        else:
+            return redirect(url_for('admin_logout_session'))
+
+    except Exception as ex:
+        print("in admin_delete_product route exception occured>>>>>>>>>>", ex)
+
+
+@app.route('/admin/edit_product', methods=['GET'])
+def admin_edit_product():
+    try:
+        if admin_login_session() == 'admin':
+
+            product_vo = ProductVO()
+            product_dao = ProductDAO()
+            category_dao = CategoryDAO()
+            subcategory_vo = SubCategoryVO()
+            subcategory_dao = SubCategoryDAO()
+
+            product_vo.product_id = request.args.get('productId')
+            subcategory_vo.subcategory_category_id = request.args.get('categoryId')
+            product_vo_list = product_dao.edit_product(product_vo)
+            category_vo_list = category_dao.view_category()
+            subcategory_vo_list = subcategory_dao.view_ajax_product_subcategory(subcategory_vo)
+            return render_template('admin/editProduct.html',product_vo_list=product_vo_list,
+                                   category_vo_list=category_vo_list,subcategory_vo_list=subcategory_vo_list)
+        else:
+            return redirect(url_for('admin_logout_session'))
+
+    except Exception as ex:
+        print("in admin_edit_product route exception occured>>>>>>>>>>", ex)
+
+
+
+@app.route('admin/update_product', methods=['POST'])
+def admin_update_product():
+    try:
+        if admin_login_session() == 'admin':
+
+            product_vo=ProductVO()
+            product_dao=ProductDAO()
+
+            product_vo.product_category_name=request.form.get('productCategoryId')
+            product_vo.product_subcategory_name=request.form.get('productSubcategoryId')
+            product_vo.product_name=request.form.get('productName')
+            product_vo.product_description=request.form.get('productDescription')
+            product_vo.product_price=request.form.get('productPrice')
+
+            product_dao.update_product(product_vo)
+            return redirect(url_for('admin_view_product'))
+        else:
+            return redirect(url_for('admin_logout_session'))
+
+    except Exception as ex:
+        print("admin_insert_product route exception occured>>>>>>>>>>", ex)
+
+
+
+
+
+
