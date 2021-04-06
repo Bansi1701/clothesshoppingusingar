@@ -1,5 +1,7 @@
-from flask import render_template,redirect,url_for,request
+from flask import render_template
+
 from base import app
+
 
 @app.route('/user', methods=['GET'])
 def user():
@@ -103,12 +105,3 @@ def product_extended():
         return render_template('user/product-extended.html')
     except Exception as ex:
         print("admin_load_login route exception occured>>>>>>>>>>", ex)
-
-
-
-
-
-
-
-
-
