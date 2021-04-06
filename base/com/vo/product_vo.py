@@ -4,7 +4,7 @@ from base.com.vo.subcategory_vo import SubCategoryVO
 
 
 class ProductVO(database.Model):
-    __tablename__ = 'orm_product_master'
+    __tablename__ = 'product_table'
     product_id = database.Column('product_id', database.Integer, primary_key=True, autoincrement=True)
     product_name=database.Column('product_name', database.String(100))
     product_description = database.Column('product_description', database.String(100))

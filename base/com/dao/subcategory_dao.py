@@ -25,6 +25,5 @@ class SubCategoryDAO:
         database.session.commit()
 
     def view_ajax_product_subcategory(self,subcategory_vo):
-        subcategory_vo_list = SubCategoryVO.query.filter_by(
-            subcategory_category_id=subcategory_vo.subcategory_category_id).all()
+        subcategory_vo_list = SubCategoryVO.query.filter_by(subcategory_category_id=subcategory_vo.subcategory_category_id).all()
         return subcategory_vo_list
