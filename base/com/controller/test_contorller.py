@@ -9,14 +9,6 @@ def user():
         print("admin_load_login route exception occured>>>>>>>>>>", ex)
 
 
-@app.route('/user/shop', methods=['GET'])
-def shop():
-    try:
-        return render_template('user/category-list.html')
-    except Exception as ex:
-        print("admin_load_login route exception occured>>>>>>>>>>", ex)
-
-
 @app.route('/user/cart', methods=['GET'])
 def cart():
     try:
@@ -49,10 +41,10 @@ def category_boxed():
         print("admin_load_login route exception occured>>>>>>>>>>", ex)
 
 
-@app.route('/user/category-list', methods=['GET'])
+@app.route('/user/category-4cols', methods=['GET'])
 def category_list():
     try:
-        return render_template('user/category-list.html')
+        return render_template('user/category-4cols.html')
     except Exception as ex:
         print("admin_load_login route exception occured>>>>>>>>>>", ex)
 
