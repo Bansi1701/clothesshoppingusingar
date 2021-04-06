@@ -124,7 +124,7 @@ def admin_edit_product():
 
 
 
-@app.route('admin/update_product', methods=['POST'])
+@app.route('/admin/update_product', methods=['POST'])
 def admin_update_product():
     try:
         if admin_login_session() == 'admin':
@@ -132,6 +132,7 @@ def admin_update_product():
             product_vo=ProductVO()
             product_dao=ProductDAO()
 
+            product_vo.product_id = request.form.get('productId')
             product_vo.product_category_name=request.form.get('productCategoryId')
             product_vo.product_subcategory_name=request.form.get('productSubcategoryId')
             product_vo.product_name=request.form.get('productName')
@@ -144,7 +145,7 @@ def admin_update_product():
             return redirect(url_for('admin_logout_session'))
 
     except Exception as ex:
-        print("admin_insert_product route exception occured>>>>>>>>>>", ex)
+        print("admin_update_product route exception occured>>>>>>>>>>", ex)
 
 
 

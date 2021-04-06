@@ -30,7 +30,6 @@
 
             ajax.onreadystatechange = function () {
                 if (ajax.readyState == 4) {
-                    alert(ajax.responseText);
                     var json = JSON.parse(ajax.responseText);
                     for (var i = 0; i < json.length; i++) {
                         option = document.createElement("option");

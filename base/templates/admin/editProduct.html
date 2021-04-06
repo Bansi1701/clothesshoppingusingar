@@ -15,7 +15,6 @@
     <link rel='shortcut icon' type='image/x-icon' href='../../static/adminResources/image/logo3.png'/>
     <script type="text/javascript">
         function category_ajax() {
-
             var ajax = new XMLHttpRequest();
             var option = document.createElement("option");
             var product_category_id = document.getElementById("productCategoryId");
@@ -43,6 +42,7 @@
             }
             ajax.open("get", "/admin/ajax_subcategory_product?productCategoryId=" + product_category_id.value, true);
             ajax.send();
+
         }
     </script>
 </head>
@@ -68,22 +68,22 @@
                                         <div class="form-group">
                                             <input type="hidden" name="productId"
                                                    value="{{ product_vo_list[0].product_id }}">
-                                            <select class="form-control" id="productCategoryId" name="categoryId"
+                                            <select class="form-control" id="productCategoryId" name="productCategoryId"
                                                     onchange="category_ajax()" required>
                                                 <option value disabled selected>Category Name</option>
                                                 {% for category in category_vo_list %}
-                                                    <option value="{{ state.state_id }}"
+                                                    <option value="{{ category.category_id }}"
                                                             {% if category.category_id == product_vo_list[0].product_category_name %}
                                                             selected {% endif %}>{{ category.category_name }}</option>
                                                 {% endfor %}
                                             </select>
                                         </div>
                                         <div class="form-group">
-                                            <select class="form-control" id="productSubcategoryId" name="subcategoryId" required>
+                                            <select class="form-control" id="productSubcategoryId" name="productSubcategoryId" required>
                                                 <option value disabled selected>Subcategory Name</option>
                                                 {% for subcategory in subcategory_vo_list %}
                                                     <option value="{{ subcategory.subcategory_id }}"
-                                                            {% if subcategory.subactegroy_id == product_vo_list[0].product_subcategory_name %}
+                                                            {% if subcategory.subcategory_id == product_vo_list[0].product_subcategory_name %}
                                                             selected {% endif %}>{{ subcategory.subcategory_name }}</option>
                                                 {% endfor %}
                                             </select>
@@ -98,14 +98,13 @@
                                         <div class="form-group mb-0">
                                             <label>Product Description</label>
                                             <textarea name="productDescription" class="form-control"
-                                                      value="{{ product_vo_list[0].product_description }}" required=""></textarea>
+                                                      required="">{{ product_vo_list[0].product_description }}</textarea>
                                         </div>
-
 
                                         <div class="form-group">
                                             <label>Product Price</label>
-                                            <input type="number" value="${{ product_vo_list[0].product_price }}"
-                                                   name="areaPincode" class="form-control" required="">
+                                            <input type="number" value="{{ product_vo_list[0].product_price }}"
+                                                   name="productPrice" class="form-control" required="">
                                         </div>
                                     </div>
                                     <div class="card-footer">
