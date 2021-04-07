@@ -45,6 +45,33 @@
         <div class="page-content">
             {% set count=0 %}
             <div class="container">
+
+                <div class="reply">
+                    <div class="heading">
+                        <h3 class="title">Leave A Reply</h3><!-- End .title -->
+                        <p class="title-desc">Your email address will not be published. Required fields are marked *</p>
+                    </div><!-- End .heading -->
+
+                    <form action="/user/insert_complain" , method="post">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="reply-name" class="sr-only">Subject</label>
+                                <input type="text" class="form-control" id="reply-name" name="userComplainType" required
+                                       placeholder="Subject *">
+                            </div><!-- End .col-md-6 -->
+                        </div>
+
+                        <label for="reply-message" class="sr-only">Comment</label>
+                        <textarea name="userComplainDescription" id="reply-message" cols="30" rows="4"
+                                  class="form-control" required placeholder="Comment *"></textarea>
+
+
+                        <button type="submit" class="btn btn-outline-primary-2">
+                            <span>POST COMMENT</span>
+                            <i class="icon-long-arrow-right"></i>
+                        </button>
+                    </form>
+                </div><!-- End .reply -->
                 <article class="entry single-entry entry-fullwidth">
                     <div class="entry-author-details">
                         <!-- End .author-media -->
@@ -87,32 +114,6 @@
                 <div class="comments">
                     <h3 class="title">{{ count }} Comment</h3><!-- End .title -->
                 </div><!-- End .comments -->
-                <div class="reply">
-                    <div class="heading">
-                        <h3 class="title">Leave A Reply</h3><!-- End .title -->
-                        <p class="title-desc">Your email address will not be published. Required fields are marked *</p>
-                    </div><!-- End .heading -->
-
-                    <form action="/user/insert_complain" , method="post">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label for="reply-name" class="sr-only">Subject</label>
-                                <input type="text" class="form-control" id="reply-name" name="userComplainType" required
-                                       placeholder="Subject *">
-                            </div><!-- End .col-md-6 -->
-                        </div>
-
-                        <label for="reply-message" class="sr-only">Comment</label>
-                        <textarea name="userComplainDescription" id="reply-message" cols="30" rows="4"
-                                  class="form-control" required placeholder="Comment *"></textarea>
-
-
-                        <button type="submit" class="btn btn-outline-primary-2">
-                            <span>POST COMMENT</span>
-                            <i class="icon-long-arrow-right"></i>
-                        </button>
-                    </form>
-                </div><!-- End .reply -->
             </div><!-- End .container -->
         </div><!-- End .page-content -->
 
