@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Molla - Bootstrap eCommerce Template</title>
+    <meta name="keywords" content="HTML5 Template">
+    <meta name="description" content="Molla - Bootstrap eCommerce Template">
+    <meta name="author" content="p-themes">
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="../../static/userResources/image/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../static/userResources/image/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../static/userResources/image/favicon-16x16.png">
+    <link rel="manifest" href="../../static/userResources/image/site.webmanifest">
+    <link rel="mask-icon" href="../../static/userResources/image/safari-pinned-tab.svg" color="#666666">
+    <link rel="shortcut icon" href="../../static/userResources/image/favicon.ico">
+    <meta name="apple-mobile-web-app-title" content="Molla">
+    <meta name="application-name" content="Molla">
+    <meta name="msapplication-TileColor" content="#cc9966">
+    <meta name="msapplication-config" content="../../static/userResources/image/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+    <!-- Plugins CSS File -->
+    <link rel="stylesheet" href="../../static/userResources/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../static/userResources/css/owl.carousel.css">
+    <!-- Main CSS File -->
+    <link rel="stylesheet" href="../../static/userResources/css/style.css">
+
+    <style>
+        #description {
+            margin-top: 10px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .rate {
+            float: left;
+            height: 46px;
+            padding: 0 10px;
+        }
+
+        .rate:not(:checked) > input {
+            position: absolute;
+            top: -9999px;
+        }
+
+        .rate:not(:checked) > label {
+            float: right;
+            width: 1em;
+            overflow: hidden;
+            white-space: nowrap;
+            cursor: pointer;
+            font-size: 30px;
+            color: #ccc;
+        }
+
+        .rate:not(:checked) > label:before {
+            content: '★ ';
+        }
+
+        .rate > input:checked ~ label {
+            color: #ffc700;
+        }
+
+        .rate:not(:checked) > label:hover,
+        .rate:not(:checked) > label:hover ~ label {
+            color: #deb217;
+        }
+
+        .rate > input:checked + label:hover,
+        .rate > input:checked + label:hover ~ label,
+        .rate > input:checked ~ label:hover,
+        .rate > input:checked ~ label:hover ~ label,
+        .rate > label:hover ~ input:checked ~ label {
+            color: #c59b08;
+        }
+
+
+    </style>
+</head>
+
+<body>
+<div class="page-wrapper">
+    {% include 'user/header.html' %}
+    <main class="main">
+        <nav aria-label="breadcrumb" class="breadcrumb-nav border-0 mb-0">
+            <div class="container">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#">Feedback</a></li>
+                </ol>
+            </div><!-- End .container -->
+        </nav><!-- End .breadcrumb-nav -->
+
+        <div class="page-content">
+            <div class="container">
+                <div class="reply">
+                    <div class="heading">
+                        <h3 class="title">Add feedbcak</h3><!-- End .title -->
+                        <p class="title-desc">Your email address will not be published. Required fields are marked *</p>
+                    </div><!-- End .heading -->
+
+                    <form action="/user/insert_feedback" method="post">
+                        <div class="rate mb-4">
+                                    <input type="radio" id="star5" name="rating" value="5"/><label for="star5"
+                                                                                                   title="text">5
+                                    stars</label>
+                                    <input type="radio" id="star4" name="rating" value="4"/><label for="star4"
+                                                                                                   title="text">4
+                                    stars</label>
+                                    <input type="radio" id="star3" name="rating" value="3"/><label for="star3"
+                                                                                                   title="text">3
+                                    stars</label>
+                                    <input type="radio" id="star2" name="rating" value="2"/><label for="star2"
+                                                                                                   title="text">2
+                                    stars</label>
+                                    <input type="radio" id="star1" name="rating" value="1"/><label for="star1"
+                                                                                                   title="text">1
+                                    star</label>
+                                </div>
+
+                        <label for="reply-message" class="sr-only">Feedback</label>
+                        <textarea name="feedbackDescription" cols="30" rows="4" class="form-control" required
+                                  placeholder="Feedback *"></textarea>
+
+                        <button type="submit" class="btn btn-outline-primary-2">
+                            <span>POST Feedback</span>
+                            <i class="icon-long-arrow-right"></i>
+                        </button>
+                    </form>
+                </div><!-- End .reply -->
+
+                {% if feedback_vo_list %}
+                    {% for feedback_vo_data in feedback_vo_list %}
+                        <article class="entry single-entry entry-fullwidth">
+                            <div class="entry-author-details">
+                                <figure class="author-media">
+                                    <a href="#">
+                                        <img src="../../static/userResources/image/user-1.jpg"
+                                             alt="User name">
+                                    </a>
+                                </figure><!-- End .author-media -->
+
+                                <div class="comment-text active w-100">
+                                    <h6 class="font-medium">{{ feedback_vo_data[0]['login_username'] }}
+                                        <span class="text-muted float-right">
+                                                {% for rating_star in range(feedback_vo_data[1]['feedback_rating']) %}
+                                                    <i class="mdi mdi-star"></i>
+                                                {% endfor %}
+                                            </span>
+                                    </h6>
+                                    <span class="m-b-15 d-block">
+                                            {{ feedback_vo_data[1]['feedback_description'] }}
+                                        </span>
+                                    <div class="comment-footer">
+                                        <span class="text-muted float-right">{{ feedback_vo_data[1]['feedback_datetime'] }}</span>
+                                    </div>
+                                </div>
+                            </div><!-- End .entry-author-details-->
+                        </article><!-- End .entry -->
+                    {% endfor %}
+                {% endif %}
+            </div><!-- End .container -->
+        </div><!-- End .page-content -->
+    </main><!-- End .main -->
+    {% include 'user/footer.html' %}
+</div><!-- End .page-wrapper -->
+
+<!-- Plugins JS File -->
+<script src="../../static/userResources/js/jquery.min.js"></script>
+<script src="../../static/userResources/js/bootstrap.bundle.min.js"></script>
+<script src="../../static/userResources/js/jquery.hoverIntent.min.js"></script>
+<script src="../../static/userResources/js/jquery.waypoints.min.js"></script>
+<script src="../../static/userResources/js/superfish.min.js"></script>
+<script src="../../static/userResources/js/owl.carousel.min.js"></script>
+<script src="../../static/userResources/js/jquery.sticky-kit.min.js"></script>
+<!-- Main JS File -->
+<script src="../../static/userResources/js/main.js"></script>
+</body>
+
+</html>
