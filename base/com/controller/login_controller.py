@@ -10,13 +10,6 @@ global_loginvo_list = []
 global_login_secretkey_set = {0}
 
 
-@app.route('/', methods=['GET'])
-def admin_load_login():
-    try:
-        return render_template('admin/login.html')
-    except Exception as ex:
-        print("admin_load_login route exception occured>>>>>>>>>>", ex)
-
 
 @app.route("/admin/validate_login", methods=['POST'])
 def admin_validate_login():
@@ -71,6 +64,15 @@ def admin_validate_login():
                     print("in admin_validate_login login_secretkey>>>>>>>>>>>>>>>", login_secretkey)
                     print("in admin_validate_login login_username>>>>>>>>>>>>>>>", login_username)
                     return response
+                elif login_role == 'user':
+                    response = make_response(redirect(url_for('user_load_dashboard')))
+                    response.set_cookie('login_secretkey', value=login_secretkey, max_age=timedelta(minutes=30))
+                    response.set_cookie('login_username', value=login_username, max_age=timedelta(minutes=30))
+                    login_secretkey = request.cookies.get('login_secretkey')
+                    login_username = request.cookies.get('login_username')
+                    print("in user_validate_login login_secretkey>>>>>>>>>>>>>>>", login_secretkey)
+                    print("in user_validate_login login_username>>>>>>>>>>>>>>>", login_username)
+                    return response
                 else:
                     return redirect(url_for('admin_logout_session'))
     except Exception as ex:
@@ -86,6 +88,16 @@ def admin_load_dashboard():
             return redirect(url_for('admin_logout_session'))
     except Exception as ex:
         print("admin_load_dashboard route exception occured>>>>>>>>>>", ex)
+
+@app.route('/user/load_dashboard', methods=['GET'])
+def user_load_dashboard():
+    try:
+        if admin_login_session() == 'user':
+            return render_template('user/index.html')
+        else:
+            return redirect(url_for('admin_logout_session'))
+    except Exception as ex:
+        print("user_load_dashboard route exception occured>>>>>>>>>>", ex)
 
 
 @app.route('/admin/login_session')
