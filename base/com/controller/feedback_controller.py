@@ -1,19 +1,8 @@
 import datetime
 
-from base import app
 from base.com.controller.login_controller import *
 from base.com.dao.feedback_dao import FeedbackDAO
 from base.com.vo.feedback_vo import FeedbackVO
-
-
-@app.route('/admin/load_complaints', methods=['GET'])
-def admin_load_complaints():
-    return render_template('admin/viewComplaints.html')
-
-
-@app.route('/admin/reply_complaint', methods=['GET'])
-def admin_reply_complaint():
-    return render_template('admin/addReply.html')
 
 
 @app.route('/admin/view_feedbacks', methods=['GET'])
@@ -23,11 +12,28 @@ def admin_view_feedback():
             feedback_dao = FeedbackDAO()
 
             feedback_vo_list = feedback_dao.admin_view_feedback()
+            print('feedback_vo_list>>>>>>>>>>>>>>>', feedback_vo_list)
             return render_template("admin/viewFeedbacks.html", feedback_vo_list=feedback_vo_list)
         else:
             return admin_logout_session()
     except Exception as ex:
         print("in admin_view_feedback route exception occured>>>>>>>>>>", ex)
+
+
+@app.route("/admin/delete_feedback")
+def admin_delete_feedback():
+    try:
+        if admin_login_session() == 'admin':
+            feedback_vo = FeedbackVO()
+            feedback_dao = FeedbackDAO()
+            feedback_vo.feedback_id = request.args.get("feedbackId")
+            feedback_dao.delete_feedback(feedback_vo)
+            return redirect(url_for('admin_view_feedback'))
+        else:
+            return admin_logout_session()
+    except Exception as ex:
+        print("in admin_delete_feedback route exception occured>>>>>>>>>>", ex)
+
 
 @app.route('/user/load_feedback', methods=['GET'])
 def user_load_feedback():

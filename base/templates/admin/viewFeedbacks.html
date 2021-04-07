@@ -52,23 +52,25 @@
                                                 <th>Action</th>
                                             </tr>
                                             </thead>
+                                        {% for feedback in feedback_vo_list %}
                                             <tbody>
                                             <tr>
-                                                <td>Tiger Nixon</td>
+                                                <td>{{ feedback[1].login_username }}</td>
                                                 <td style="white-space: normal;word-break: normal;width: 20%">
-                                                    {% for j in range(4) %}
+                                                    {% for j in range(feedback[0].feedback_rating) %}
                                                         <i class="fa fa-star"></i>
                                                     {% endfor %}
                                                 </td>
-                                                <td>Edinburgh</td>
-                                                <td>12:00</td>
-                                                <td><a href="#"
+                                                <td>{{ feedback[0].feedback_description }}</td>
+                                                <td>{{ feedback[0].feedback_datetime }}</td>
+                                                <td><a href="/admin/delete_feedback?feedbackId={{ feedback[0].feedback_id }}"
                                                        style="margin-left: 15px"><i class="fa fa-trash"
                                                                                     style="font-size: 16px;margin-left: 15px;color: #f86f6f"></i></a>
                                                 </td>
                                             </tr>
 
                                             </tbody>
+                                        {% endfor %}
                                         </table>
                                     </div>
                                 </div>
