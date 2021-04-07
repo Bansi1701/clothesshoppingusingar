@@ -55,20 +55,28 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr>
-                                                <td>Tiger Nixon</td>
-                                                <td>System Architect</td>
-                                                <td>Edinburgh</td>
-                                                <td>61</td>
-                                                <td><a href="#"><i class="fa fa-trash" style="font-size: 16px;margin-left: 15px;color: #f86f6f"></i></a></td>
-                                                {% if 1==1 %}
-                                                    <td><a href="/admin/reply_complaint" class="btn btn-primary">Reply</a></td>
-                                                {% endif %}
-                                                {% if 1==0 %}
-                                                    <td><a href="#" class="btn disabled btn-primary">Replied</a></td>
-                                                {% endif %}
-                                                <td>sbdfhvbwhd</td>
-                                            </tr>
+                                            {% for complain in complain_vo_list %}
+                                                <tr>
+                                                    <td>{{ complain[1].login_username }}</td>
+                                                    <td>{{ complain[0].complain_subject }}</td>
+                                                    <td>{{ complain[0].complain_description }}</td>
+                                                    <td>{{ complain[0].complain_datetime }}</td>
+                                                    <td>
+                                                        <a href="/admin/delete_complain?complainId={{ complain[0].complain_id }}"><i
+                                                                class="fa fa-trash"
+                                                                style="font-size: 16px;margin-left: 15px;color: #f86f6f"></i></a>
+                                                    </td>
+                                                    {% if complain[0].complain_status == "Pending" %}
+                                                        <td>
+                                                            <a href="/admin/load_complain_reply?complainId={{ complain[0].complain_id }}"
+                                                               class="btn btn-primary">Reply</a></td>
+                                                    {% else %}
+                                                        <td><a href="#" class="btn disabled btn-primary">Replied</a>
+                                                        </td>
+                                                    {% endif %}
+                                                    <td>{{ complain[0].complain_reply_description }}</td>
+                                                </tr>
+                                            {% endfor %}
 
                                             </tbody>
                                         </table>
