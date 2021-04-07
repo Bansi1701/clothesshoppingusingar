@@ -2,17 +2,17 @@ from base import database
 from base.com.vo.login_vo import LoginVO
 
 
-class ComplainVO(db.Model):
+class ComplainVO(database.Model):
     __tablename__ = "complain_table"
-    complain_id = db.Column("complain_id", db.Integer, primary_key=True, autoincrement=True)
-    complain_subject = db.Column("complain_subject", db.String(255), nullable=False)
-    complain_description = db.Column("complain_description", db.String(255), nullable=False)
-    complain_datetime = db.Column("complain_datetime", db.DateTime)
-    complain_status = db.Column("complain_status", db.String(20))
-    complain_from_login_id = db.Column("complain_from_login_id", db.Integer, db.ForeignKey(LoginVO.login_id))
-    complain_to_login_id = db.Column("complain_to_login_id", db.Integer, db.ForeignKey(LoginVO.login_id))
-    complain_reply_description = db.Column("complain_reply_description", db.String(255))
-    complain_reply_datetime = db.Column("complain_reply_datetime", db.DateTime)
+    complain_id = database.Column("complain_id", database.Integer, primary_key=True, autoincrement=True)
+    complain_subject = database.Column("complain_subject", database.String(255), nullable=False)
+    complain_description = database.Column("complain_description", database.String(255), nullable=False)
+    complain_datetime = database.Column("complain_datetime", database.DateTime)
+    complain_status = database.Column("complain_status", database.String(20))
+    complain_from_login_id = database.Column("complain_from_login_id", database.Integer, database.ForeignKey(LoginVO.login_id))
+    complain_to_login_id = database.Column("complain_to_login_id", database.Integer, database.ForeignKey(LoginVO.login_id))
+    complain_reply_description = database.Column("complain_reply_description", database.String(255))
+    complain_reply_datetime = database.Column("complain_reply_datetime", database.DateTime)
 
     def as_di1ct(self):
         return {
@@ -28,4 +28,4 @@ class ComplainVO(db.Model):
         }
 
 
-db.create_all()
+database.create_all()

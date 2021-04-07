@@ -22,7 +22,7 @@ def admin_view_complain():
         if admin_login_session() == 'admin':
             complain_dao = ComplainDAO()
             complain_vo_list = complain_dao.admin_view_complain()
-            return render_template("admin/viewComplain.html", complain_vo_list=complain_vo_list)
+            return render_template("admin/viewComplaints.html", complain_vo_list=complain_vo_list)
         else:
             return admin_logout_session()
     except Exception as ex:
@@ -36,6 +36,7 @@ def admin_load_complain_reply():
             complain_dao = ComplainDAO()
             complain_vo = ComplainVO()
             complain_id = request.args.get("complainId")
+            print(complain_id)
             complain_vo.complain_id = complain_id
             complain_vo_list = complain_dao.insert_complain_reply(complain_vo)  # fetch the complain data
             print("complain_vo_list>>>>>", complain_vo_list)
@@ -110,25 +111,25 @@ def user_view_complain():
                 for index in range(len(complain_vo_list)):
                     if user_login_id == complain_vo_list[index][1].complain_from_login_id:
                         complain_vo_updated_list.append(complain_vo_list[index])
+                print("complain_vo_updated_list >>>>>>>>>>>>>>",complain_vo_updated_list)
                 if len(complain_vo_updated_list) == 0:
-                    return render_template("user/addComplain.html", complain_vo_updated_list=None)
+                    return render_template("user/addComplaint.html", complain_vo_updated_list=None)
                 else:
-                    if complain_vo_updated_list[0][1].complain_to_login_id is not None:
-                        print("complain_vo_updated_list[0][1].complain_to_login_id", complain_vo_updated_list)
-                        admin_login_id = complain_vo_updated_list[0][1].complain_to_login_id
-                        print("admin_login_id=", admin_login_id)
-                        admin_login_vo = LoginVO()
-                        admin_login_vo.login_id = admin_login_id
-                        admin_login_username = login_dao.find_login_username(admin_login_vo)
-                        print("admin_login_username=", admin_login_username)
-                        return render_template("user/addComplain.html",
-                                               complain_vo_updated_list=complain_vo_updated_list,
-                                               admin_login_username=admin_login_username)
-                    else:
-                        return render_template("user/addComplain.html",
-                                               complain_vo_updated_list=complain_vo_updated_list)
+                    admin_login_username = None
+                    for index in range(len(complain_vo_list)):
+                        if complain_vo_updated_list[index][1].complain_to_login_id is not None:
+                            print("complain_vo_updated_list[index][1].complain_to_login_id", complain_vo_updated_list)
+                            admin_login_id = complain_vo_updated_list[index][1].complain_to_login_id
+                            print("admin_login_id=", admin_login_id)
+                            admin_login_vo = LoginVO()
+                            admin_login_vo.login_id = admin_login_id
+                            admin_login_username = login_dao.find_login_username(admin_login_vo)
+                            print("admin_login_username=", admin_login_username)
+                            return render_template("user/addComplaint.html",
+                                                   complain_vo_updated_list=complain_vo_updated_list,
+                                                   admin_login_username=admin_login_username)
             else:
-                return render_template("user/addComplain.html", complain_vo_updated_list=None)
+                return render_template("user/addComplaint.html", complain_vo_updated_list=None)
         else:
             return admin_logout_session()
 
