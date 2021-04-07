@@ -12,6 +12,8 @@ class RegisterVO(database.Model):
     user_gender = database.Column('user_gender', database.String(100))
     user_address= database.column('user_address',database.String(255))
     user_pincode = database.Column('user_pincode', database.Integer)
+    user_email = database.column('user_email', database.String(255))
+    user_password = database.column('user_password', database.String(255))
     user_state_id = database.Column('user_state_id', database.Integer, database.ForeignKey(StateVO.state_id))
     user_city_id = database.Column('user_city_id', database.Integer, database.ForeignKey(CityVO.city_id))
     user_login_id = database.Column('user_login_id', database.Integer, database.ForeignKey(LoginVO.login_id))

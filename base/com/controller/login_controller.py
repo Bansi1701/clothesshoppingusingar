@@ -4,11 +4,20 @@ from flask import render_template, redirect, request, url_for, make_response, fl
 
 from base import app
 from base.com.dao.login_dao import LoginDAO
+from base.com.dao.state_dao import StateDAO
 from base.com.vo.login_vo import LoginVO
 
 global_loginvo_list = []
 global_login_secretkey_set = {0}
 
+@app.route('/', methods=['GET'])
+def load_login():
+    try:
+        state_dao = StateDAO()
+        state_vo_list = state_dao.view_state()
+        return render_template('user/login.html', state_vo_list=state_vo_list)
+    except Exception as ex:
+        print("load_login route exception occured>>>>>>>>>>", ex)
 
 
 @app.route("/admin/validate_login", methods=['POST'])
@@ -117,6 +126,8 @@ def admin_login_session():
             if login_secretkey in i.keys():
                 if i[login_secretkey]['login_role'] == 'admin':
                     login_role_flag = "admin"
+                if i[login_secretkey]['login_role'] == 'user':
+                    login_role_flag = "user"
 
         print("after login_role_flag>>>>>>>>>>", login_role_flag)
         print("after len(login_role_flag)>>>>>>>>>>", len(login_role_flag))
