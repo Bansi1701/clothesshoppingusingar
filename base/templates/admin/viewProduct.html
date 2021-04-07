@@ -44,6 +44,8 @@
                                                 <th>Product Name</th>
                                                 <th>Product Description</th>
                                                 <th>Product Price</th>
+                                                <th>Product Image Name</th>
+                                                <th>Product Image Path</th>
                                                 <th>Action</th>
                                             </tr>
                                             </thead>
@@ -55,11 +57,11 @@
                                                     <td>{{ product[0].product_name }}</td>
                                                     <td>{{ product[0].product_description }}</td>
                                                     <td>${{ product[0].product_price }}</td>
+                                                    <td>{{ product[0].product_image_name }}</td>
+                                                    <td>{{ product[0].product_image_path }}</td>
                                                     <td>
-                                                        <a href="/admin/edit_product?productId={{ product[0].product_id }}&categoryId={{ product[2].category_id }}"><i
-                                                                class="fa fa-edit" style="font-size: 16px"></i></a>
                                                         <a href="/admin/delete_product?productId={{ product[0].product_id }}"
-                                                           style="margin-left: 15px"><i class="fa fa-trash" style="font-size: 16px;margin-left: 15px;color: #f86f6f"></i></a>
+                                                           style="margin-left: 15px"><i class="fa fa-trash" style="font-size: 16px;color: #f86f6f"></i></a>
                                                     </td>
                                                 </tr>
                                             {% endfor %}

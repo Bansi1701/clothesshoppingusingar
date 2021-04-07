@@ -17,6 +17,7 @@ class ProductDAO:
         product_vo_list = ProductVO.query.get(product_id)
         database.session.delete(product_vo_list)
         database.session.commit()
+        return product_vo_list
 
     def edit_product(self,product_vo):
         product_vo_list = ProductVO.query.filter_by(product_id=product_vo.product_id).all()
