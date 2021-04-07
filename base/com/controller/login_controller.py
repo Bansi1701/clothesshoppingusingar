@@ -165,6 +165,3 @@ def admin_logout_session():
         print("in admin_logout_session route exception occured>>>>>>>>>>", ex)
 
 
-@app.route('/admin/forgot_password', methods=['GET'])
-def admin_forgot_password():
-    return render_template('admin/forgotPassword.html')
