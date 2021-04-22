@@ -110,3 +110,6 @@ def admin_delete_product():
 
     except Exception as ex:
         print("in admin_delete_product route exception occured>>>>>>>>>>", ex)
+
+
+

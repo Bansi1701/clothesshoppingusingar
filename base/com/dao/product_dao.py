@@ -19,10 +19,6 @@ class ProductDAO:
         database.session.commit()
         return product_vo_list
 
-    def edit_product(self,product_vo):
-        product_vo_list = ProductVO.query.filter_by(product_id=product_vo.product_id).all()
+    def selected_view_product(self,product_id):
+        product_vo_list=ProductVO.query.filter_by(product_id=product_id).all()
         return product_vo_list
-
-    def update_product(self,product_vo):
-        database.session.merge(product_vo)
-        database.session.commit()

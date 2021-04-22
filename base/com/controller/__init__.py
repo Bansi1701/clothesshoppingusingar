@@ -1,5 +1,5 @@
 from base.com.controller import area_controller
-# from base.com.controller import home_controller
+from base.com.controller import home_controller
 from base.com.controller import category_controller
 from base.com.controller import city_controller
 from base.com.controller import login_controller
@@ -11,3 +11,5 @@ from base.com.controller import product_controller
 from base.com.controller import test_contorller
 from base.com.controller import complain_controller
 from base.com.controller import feedback_controller
+from base.com.controller import detection_controller
+from base.com.controller import camera
