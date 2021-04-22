@@ -8,7 +8,7 @@ from base.com.controller import subcategory_controller
 from base.com.controller import user_controller
 from base.com.controller import profile_controller
 from base.com.controller import product_controller
-from base.com.controller import test_contorller
+from base.com.controller import website_actions_contorller
 from base.com.controller import complain_controller
 from base.com.controller import feedback_controller
 from base.com.controller import detection_controller

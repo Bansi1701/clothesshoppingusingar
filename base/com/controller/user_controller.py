@@ -32,7 +32,7 @@ def user_register():
             elif i.login_username == login_username:
                 error_message = "The username is already exists !"
                 flash(error_message)
-                return render_template('/')
+                return redirect(url_for('load_login'))
 
     login_password = ''.join((random.choice(string.ascii_letters + string.digits)) for x in range(8))
     print("in user_insert_user login_password>>>>>>>>>", login_password)

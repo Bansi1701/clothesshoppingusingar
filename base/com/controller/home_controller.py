@@ -2,10 +2,7 @@ from flask import *
 
 from base import *
 from base.com.dao.city_dao import CityDAO
-from base.com.dao.state_dao import StateDAO
 from base.com.vo.city_vo import CityVO
-
-
 
 
 @app.route('/ajax_area_city', methods=['get'])
@@ -24,4 +21,4 @@ def ajax_area_city():
         return jsonify(ajax_area_city)
 
     except Exception as ex:
-        print('admin_ajax_area_city route exception occured>>>>>>>>>>', ex)
+        print('ajax_area_city route exception occured>>>>>>>>>>', ex)

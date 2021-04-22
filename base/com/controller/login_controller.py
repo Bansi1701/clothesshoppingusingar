@@ -10,6 +10,7 @@ from base.com.vo.login_vo import LoginVO
 global_loginvo_list = []
 global_login_secretkey_set = {0}
 
+
 @app.route('/', methods=['GET'])
 def load_login():
     try:
@@ -98,6 +99,7 @@ def admin_load_dashboard():
     except Exception as ex:
         print("admin_load_dashboard route exception occured>>>>>>>>>>", ex)
 
+
 @app.route('/user/load_dashboard', methods=['GET'])
 def user_load_dashboard():
     try:
@@ -163,5 +165,3 @@ def admin_logout_session():
         return response
     except Exception as ex:
         print("in admin_logout_session route exception occured>>>>>>>>>>", ex)
-
-
