@@ -13,3 +13,4 @@ from base.com.controller import complain_controller
 from base.com.controller import feedback_controller
 from base.com.controller import detection_controller
 from base.com.controller import camera
+from base.com.controller import cart_controller

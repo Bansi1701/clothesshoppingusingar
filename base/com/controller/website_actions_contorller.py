@@ -12,12 +12,7 @@ def user():
         print("admin_load_login route exception occured>>>>>>>>>>", ex)
 
 
-@app.route('/user/cart', methods=['GET'])
-def cart():
-    try:
-        return render_template('user/cart.html')
-    except Exception as ex:
-        print("admin_load_login route exception occured>>>>>>>>>>", ex)
+
 
 
 @app.route('/user/checkout', methods=['GET'])

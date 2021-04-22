@@ -1,41 +1,41 @@
-from flask import*
+import cv2
+import numpy as np
+from flask import *
+
 from base import app
 from base.com.controller.camera import *
 from base.com.dao.product_dao import ProductDAO
-import cv2
-import numpy as np
-
 
 
 @app.route('/user/load', methods=['GET'])
 def load_detection():
     try:
-        product_id=request.args.get('product_id')
-        product_dao=ProductDAO()
-        product_vo_list=product_dao.selected_view_product(product_id)
-        print("product vo list>>>>>",product_vo_list)
+        product_id = request.args.get('product_id')
+        product_dao = ProductDAO()
+        product_vo_list = product_dao.selected_view_product(product_id)
+        print("product vo list>>>>>", product_vo_list)
 
-        session['product_image_path'] = (request.args.get('product_image_path')).replace("..","base")
+        session['product_image_path'] = (request.args.get('product_image_path')).replace("..", "base")
         session['product_image_name'] = request.args.get('product_image_name')
-        return render_template("user/product-extended.html",product_vo_list=product_vo_list)
+        return render_template("user/product-extended.html", product_vo_list=product_vo_list)
     except Exception as ex:
         print("admin_load_login route exception occured>>>>>>>>>>", ex)
+
 
 @app.route('/user/load_detection', methods=['GET'])
 def user_load_detection():
     try:
-        product_id=request.args.get('product_id')
-        product_image_name=session.get('product_image_name')
-        product_image_path=session.get('product_image_path')
-        print('product_image_path>>>',product_image_path+product_image_name)
-        return Response(gen(VideoCamera(),image=product_image_path+product_image_name),
+        product_id = request.args.get('product_id')
+        product_image_name = session.get('product_image_name')
+        product_image_path = session.get('product_image_path')
+        print('product_image_path>>>', product_image_path + product_image_name)
+        return Response(gen(VideoCamera(), image=product_image_path + product_image_name),
                         mimetype='multipart/x-mixed-replace; boundary=frame')
     except Exception as ex:
         print("admin_load_login route exception occured>>>>>>>>>>", ex)
 
 
 def transparentOverlay(src, overlay, w, pos=(0, 0), scale=5):
-
     if w < 60:
         overlay = cv2.resize(overlay, (50, 50), fx=scale, fy=scale)
     if w > 60 and w < 100:
