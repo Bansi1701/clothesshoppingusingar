@@ -1,0 +1,36 @@
+Index: .idea/clothesshoppingusingar.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<module type=\"PYTHON_MODULE\" version=\"4\">\r\n  <component name=\"Flask\">\r\n    <option name=\"enabled\" value=\"true\" />\r\n  </component>\r\n  <component name=\"NewModuleRootManager\">\r\n    <content url=\"file://$MODULE_DIR$\" />\r\n    <orderEntry type=\"jdk\" jdkName=\"Python 3.6.3 (C:\\Users\\Mauli\\Anaconda3\\python.exe)\" jdkType=\"Python SDK\" />\r\n    <orderEntry type=\"sourceFolder\" forTests=\"false\" />\r\n  </component>\r\n  <component name=\"PyNamespacePackagesService\">\r\n    <option name=\"namespacePackageFolders\">\r\n      <list>\r\n        <option value=\"$MODULE_DIR$/base/com\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"TemplatesService\">\r\n    <option name=\"TEMPLATE_CONFIGURATION\" value=\"Jinja2\" />\r\n    <option name=\"TEMPLATE_FOLDERS\">\r\n      <list>\r\n        <option value=\"$MODULE_DIR$/base/templates\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n</module>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/clothesshoppingusingar.iml b/.idea/clothesshoppingusingar.iml
+--- a/.idea/clothesshoppingusingar.iml	
++++ b/.idea/clothesshoppingusingar.iml	
+@@ -5,7 +5,7 @@
+   </component>
+   <component name="NewModuleRootManager">
+     <content url="file://$MODULE_DIR$" />
+-    <orderEntry type="jdk" jdkName="Python 3.6.3 (C:\Users\Mauli\Anaconda3\python.exe)" jdkType="Python SDK" />
++    <orderEntry type="jdk" jdkName="Python 3.6.3 (C:\Users\bansi\Anaconda3\python.exe)" jdkType="Python SDK" />
+     <orderEntry type="sourceFolder" forTests="false" />
+   </component>
+   <component name="PyNamespacePackagesService">
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ProjectRootManager\" version=\"2\" project-jdk-name=\"Python 3.6.3 (C:\\Users\\Mauli\\Anaconda3\\python.exe)\" project-jdk-type=\"Python SDK\" />\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	
++++ b/.idea/misc.xml	
+@@ -1,4 +1,4 @@
+ <?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+-  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.6.3 (C:\Users\Mauli\Anaconda3\python.exe)" project-jdk-type="Python SDK" />
++  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.6.3 (C:\Users\bansi\Anaconda3\python.exe)" project-jdk-type="Python SDK" />
+ </project>
+\ No newline at end of file

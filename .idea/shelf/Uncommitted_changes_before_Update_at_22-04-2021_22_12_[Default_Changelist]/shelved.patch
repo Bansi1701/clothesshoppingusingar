@@ -1,0 +1,97 @@
+Index: base/com/controller/__init__.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>from base.com.controller import area_controller\r\n# from base.com.controller import home_controller\r\nfrom base.com.controller import category_controller\r\nfrom base.com.controller import city_controller\r\nfrom base.com.controller import login_controller\r\nfrom base.com.controller import state_controller\r\nfrom base.com.controller import subcategory_controller\r\nfrom base.com.controller import user_controller\r\nfrom base.com.controller import profile_controller\r\nfrom base.com.controller import product_controller\r\nfrom base.com.controller import test_contorller\r\nfrom base.com.controller import complain_controller\r\nfrom base.com.controller import feedback_controller\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/base/com/controller/__init__.py b/base/com/controller/__init__.py
+--- a/base/com/controller/__init__.py	(revision 5780ace74c1bc0846850f5ca51bdf07951914019)
++++ b/base/com/controller/__init__.py	(date 1617856844224)
+@@ -1,5 +1,5 @@
+ from base.com.controller import area_controller
+-# from base.com.controller import home_controller
++from base.com.controller import home_controller
+ from base.com.controller import category_controller
+ from base.com.controller import city_controller
+ from base.com.controller import login_controller
+Index: base/com/controller/user_controller.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import random\r\nimport smtplib\r\nimport string\r\nfrom email.mime.multipart import MIMEMultipart\r\nfrom email.mime.text import MIMEText\r\n\r\nfrom flask import *\r\n\r\nfrom base import app\r\nfrom base.com.dao.login_dao import LoginDAO\r\nfrom base.com.dao.user_dao import RegisterDAO\r\nfrom base.com.vo.login_vo import LoginVO\r\nfrom base.com.vo.user_vo import RegisterVO\r\n\r\n\r\n@app.route('/user_register', methods=['POST'])\r\ndef user_register():\r\n    login_dao = LoginDAO()\r\n    login_vo = LoginVO()\r\n\r\n    login_username = request.form.get('userEmail')\r\n\r\n    login_secretkey = ''.join((random.choice(string.ascii_letters + string.digits)) for x in range(32))\r\n    print(\"in user_insert_user login_secretkey>>>>>>>\", login_secretkey)\r\n    login_vo_list = login_dao.view_login()\r\n    print(\"in user_insert_user login_vo_list>>>>>>\", login_vo_list)\r\n    if len(login_vo_list) != 0:\r\n        for i in login_vo_list:\r\n            if i.login_secretkey == login_secretkey:\r\n                login_secretkey = ''.join(\r\n                    (random.choice(string.ascii_letters + string.digits)) for x in range(32))\r\n            elif i.login_username == login_username:\r\n                error_message = \"The username is already exists !\"\r\n                flash(error_message)\r\n                return render_template('/')\r\n\r\n    login_password = ''.join((random.choice(string.ascii_letters + string.digits)) for x in range(8))\r\n    print(\"in user_insert_user login_password>>>>>>>>>\", login_password)\r\n\r\n    sender = \"noreply.fooday@gmail.com\"\r\n    receiver = login_username\r\n    msg = MIMEMultipart()\r\n    msg['From'] = sender\r\n    msg['To'] = receiver\r\n    msg['Subject'] = \"PYTHON PASSWORD\"\r\n    msg.attach(MIMEText(login_password, 'plain'))\r\n\r\n    server = smtplib.SMTP('smtp.gmail.com', 587)\r\n    server.starttls()\r\n    '''Pass word add akr'''\r\n    server.login(sender, \"LOL@12345\")\r\n    text = msg.as_string()\r\n    server.sendmail(sender, receiver, text)\r\n    server.quit()\r\n\r\n    login_vo.login_role = 'user'\r\n    login_vo.login_status = 'active'\r\n    login_vo.login_username = login_username\r\n    login_vo.login_password = login_password\r\n    login_vo.login_secretkey = login_secretkey\r\n\r\n    login_dao.insert_user(login_vo)\r\n\r\n    register_vo = RegisterVO()\r\n    register_dao = RegisterDAO()\r\n    register_vo.user_firstname = request.form.get('firstName')\r\n    register_vo.user_lastname = request.form.get('lastName')\r\n    register_vo.user_gender = request.form.get('gender')\r\n    register_vo.user_address = request.form.get('address')\r\n    register_vo.user_pincode = request.form.get('pincode')\r\n    register_vo.user_state_id = request.form.get('stateId')\r\n    register_vo.user_city_id = request.form.get('cityId')\r\n    register_vo.user_login_id = login_vo.login_id\r\n    register_dao.insert_user(register_vo)\r\n\r\n    return redirect('/')\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/base/com/controller/user_controller.py b/base/com/controller/user_controller.py
+--- a/base/com/controller/user_controller.py	(revision 5780ace74c1bc0846850f5ca51bdf07951914019)
++++ b/base/com/controller/user_controller.py	(date 1617872670341)
+@@ -32,7 +32,7 @@
+             elif i.login_username == login_username:
+                 error_message = "The username is already exists !"
+                 flash(error_message)
+-                return render_template('/')
++                return redirect(url_for('load_login'))
+ 
+     login_password = ''.join((random.choice(string.ascii_letters + string.digits)) for x in range(8))
+     print("in user_insert_user login_password>>>>>>>>>", login_password)
+Index: base/com/controller/login_controller.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>from datetime import timedelta\r\n\r\nfrom flask import render_template, redirect, request, url_for, make_response, flash\r\n\r\nfrom base import app\r\nfrom base.com.dao.login_dao import LoginDAO\r\nfrom base.com.dao.state_dao import StateDAO\r\nfrom base.com.vo.login_vo import LoginVO\r\n\r\nglobal_loginvo_list = []\r\nglobal_login_secretkey_set = {0}\r\n\r\n@app.route('/', methods=['GET'])\r\ndef load_login():\r\n    try:\r\n        state_dao = StateDAO()\r\n        state_vo_list = state_dao.view_state()\r\n        return render_template('user/login.html', state_vo_list=state_vo_list)\r\n    except Exception as ex:\r\n        print(\"load_login route exception occured>>>>>>>>>>\", ex)\r\n\r\n\r\n@app.route(\"/admin/validate_login\", methods=['POST'])\r\ndef admin_validate_login():\r\n    try:\r\n        global global_loginvo_list\r\n        global global_login_secretkey_set\r\n\r\n        login_username = request.form.get('loginUsername')\r\n        login_password = request.form.get('loginPassword')\r\n\r\n        login_vo = LoginVO()\r\n        login_dao = LoginDAO()\r\n\r\n        login_vo.login_username = login_username\r\n        login_vo.login_password = login_password\r\n\r\n        login_vo_list = login_dao.validate_login(login_vo)\r\n        login_list = [i.as_dict() for i in login_vo_list]\r\n        print(\"in admin_validate_login login_list>>>>>>>>>>>\", login_list)\r\n        len_login_list = len(login_list)\r\n        if len_login_list == 0:\r\n            error_message = 'username or password is incorrect !'\r\n            flash(error_message)\r\n            return redirect('/')\r\n        elif login_list[0]['login_status'] == 'inactive':\r\n            error_message = 'You have been temporarily blocked by website admin !'\r\n            flash(error_message)\r\n            return redirect('/')\r\n        else:\r\n            for row1 in login_list:\r\n                login_id = row1['login_id']\r\n                login_username = row1['login_username']\r\n                login_role = row1['login_role']\r\n                login_secretkey = row1['login_secretkey']\r\n                login_vo_dict = {\r\n                    login_secretkey: {'login_username': login_username, 'login_role': login_role, 'login_id': login_id}}\r\n                if len(global_loginvo_list) != 0:\r\n                    for i in global_loginvo_list:\r\n                        tempList = list(i.keys())\r\n                        global_login_secretkey_set.add(tempList[0])\r\n                    login_secretkey_list = list(global_login_secretkey_set)\r\n                    if login_secretkey not in login_secretkey_list:\r\n                        global_loginvo_list.append(login_vo_dict)\r\n                else:\r\n                    global_loginvo_list.append(login_vo_dict)\r\n                if login_role == 'admin':\r\n                    response = make_response(redirect(url_for('admin_load_dashboard')))\r\n                    response.set_cookie('login_secretkey', value=login_secretkey, max_age=timedelta(minutes=30))\r\n                    response.set_cookie('login_username', value=login_username, max_age=timedelta(minutes=30))\r\n                    login_secretkey = request.cookies.get('login_secretkey')\r\n                    login_username = request.cookies.get('login_username')\r\n                    print(\"in admin_validate_login login_secretkey>>>>>>>>>>>>>>>\", login_secretkey)\r\n                    print(\"in admin_validate_login login_username>>>>>>>>>>>>>>>\", login_username)\r\n                    return response\r\n                elif login_role == 'user':\r\n                    response = make_response(redirect(url_for('user_load_dashboard')))\r\n                    response.set_cookie('login_secretkey', value=login_secretkey, max_age=timedelta(minutes=30))\r\n                    response.set_cookie('login_username', value=login_username, max_age=timedelta(minutes=30))\r\n                    login_secretkey = request.cookies.get('login_secretkey')\r\n                    login_username = request.cookies.get('login_username')\r\n                    print(\"in user_validate_login login_secretkey>>>>>>>>>>>>>>>\", login_secretkey)\r\n                    print(\"in user_validate_login login_username>>>>>>>>>>>>>>>\", login_username)\r\n                    return response\r\n                else:\r\n                    return redirect(url_for('admin_logout_session'))\r\n    except Exception as ex:\r\n        print(\"admin_validate_login route exception occured>>>>>>>>>>\", ex)\r\n\r\n\r\n@app.route('/admin/load_dashboard', methods=['GET'])\r\ndef admin_load_dashboard():\r\n    try:\r\n        if admin_login_session() == 'admin':\r\n            return render_template('admin/index.html')\r\n        else:\r\n            return redirect(url_for('admin_logout_session'))\r\n    except Exception as ex:\r\n        print(\"admin_load_dashboard route exception occured>>>>>>>>>>\", ex)\r\n\r\n@app.route('/user/load_dashboard', methods=['GET'])\r\ndef user_load_dashboard():\r\n    try:\r\n        if admin_login_session() == 'user':\r\n            return render_template('user/index.html')\r\n        else:\r\n            return redirect(url_for('admin_logout_session'))\r\n    except Exception as ex:\r\n        print(\"user_load_dashboard route exception occured>>>>>>>>>>\", ex)\r\n\r\n\r\n@app.route('/admin/login_session')\r\ndef admin_login_session():\r\n    try:\r\n        global global_loginvo_list\r\n        login_role_flag = \"\"\r\n        print(\"before login_role_flag=\", login_role_flag)\r\n        print(\"before len(login_role_flag)>>>>>>>>>>\", len(login_role_flag))\r\n\r\n        login_secretkey = request.cookies.get('login_secretkey')\r\n        print(\"in admin_login_session login_secretkey>>>>>>>>>\", login_secretkey)\r\n\r\n        if login_secretkey is None:\r\n            return redirect('/')\r\n        for i in global_loginvo_list:\r\n            if login_secretkey in i.keys():\r\n                if i[login_secretkey]['login_role'] == 'admin':\r\n                    login_role_flag = \"admin\"\r\n                if i[login_secretkey]['login_role'] == 'user':\r\n                    login_role_flag = \"user\"\r\n\r\n        print(\"after login_role_flag>>>>>>>>>>\", login_role_flag)\r\n        print(\"after len(login_role_flag)>>>>>>>>>>\", len(login_role_flag))\r\n\r\n        if len(login_role_flag) != 0:\r\n            print(\"<<<<<<<<<<<<<<<<True>>>>>>>>>>>>>>>>>>>>\")\r\n        return login_role_flag\r\n    except Exception as ex:\r\n        print(\"admin_login_session route exception occured>>>>>>>>>>\", ex)\r\n\r\n\r\n@app.route(\"/admin/logout_session\", methods=['GET'])\r\ndef admin_logout_session():\r\n    try:\r\n        global global_loginvo_list\r\n        login_secretkey = request.cookies.get('login_secretkey')\r\n        login_username = request.cookies.get('login_username')\r\n        print(\"in admin_logout_session login_secretkey>>>>>>>>>\", login_secretkey)\r\n        print(\"in admin_logout_session login_username>>>>>>>>>\", login_username)\r\n        print(\"in admin_logout_session type of login_secretkey>>>>>>>>>\", type(login_secretkey))\r\n        print(\"in admin_logout_session type of login_username>>>>>>>>>\", type(login_username))\r\n\r\n        response = make_response(redirect('/'))\r\n        if login_secretkey is not None and login_username is not None:\r\n            response.set_cookie('login_secretkey', login_secretkey, max_age=0)\r\n            response.set_cookie('login_username', login_username, max_age=0)\r\n            for i in global_loginvo_list:\r\n                if login_secretkey in i.keys():\r\n                    global_loginvo_list.remove(i)\r\n                    print(\"in admin_logout_session global_loginvo_list>>>>>>>>>>>>>>>\", global_loginvo_list)\r\n                    break\r\n\r\n        return response\r\n    except Exception as ex:\r\n        print(\"in admin_logout_session route exception occured>>>>>>>>>>\", ex)\r\n\r\n\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/base/com/controller/login_controller.py b/base/com/controller/login_controller.py
+--- a/base/com/controller/login_controller.py	(revision 5780ace74c1bc0846850f5ca51bdf07951914019)
++++ b/base/com/controller/login_controller.py	(date 1617888580767)
+@@ -10,6 +10,7 @@
+ global_loginvo_list = []
+ global_login_secretkey_set = {0}
+ 
++
+ @app.route('/', methods=['GET'])
+ def load_login():
+     try:
+@@ -98,6 +99,7 @@
+     except Exception as ex:
+         print("admin_load_dashboard route exception occured>>>>>>>>>>", ex)
+ 
++
+ @app.route('/user/load_dashboard', methods=['GET'])
+ def user_load_dashboard():
+     try:
+@@ -163,5 +165,3 @@
+         return response
+     except Exception as ex:
+         print("in admin_logout_session route exception occured>>>>>>>>>>", ex)
+-
+-
+Index: base/com/controller/home_controller.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>from flask import *\r\n\r\nfrom base import *\r\nfrom base.com.dao.city_dao import CityDAO\r\nfrom base.com.dao.state_dao import StateDAO\r\nfrom base.com.vo.city_vo import CityVO\r\n\r\n\r\n\r\n\r\n@app.route('/ajax_area_city', methods=['get'])\r\ndef ajax_area_city():\r\n    try:\r\n\r\n        city_dao = CityDAO()\r\n        city_vo = CityVO()\r\n\r\n        city_vo.city_state_id = request.args.get('stateId')\r\n        city_vo_list = city_dao.view_ajax_area_city(city_vo)\r\n\r\n        ajax_area_city = [i.as_dict() for i in city_vo_list]\r\n        print(ajax_area_city)\r\n\r\n        return jsonify(ajax_area_city)\r\n\r\n    except Exception as ex:\r\n        print('admin_ajax_area_city route exception occured>>>>>>>>>>', ex)\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/base/com/controller/home_controller.py b/base/com/controller/home_controller.py
+--- a/base/com/controller/home_controller.py	(revision 5780ace74c1bc0846850f5ca51bdf07951914019)
++++ b/base/com/controller/home_controller.py	(date 1617888580795)
+@@ -2,12 +2,9 @@
+ 
+ from base import *
+ from base.com.dao.city_dao import CityDAO
+-from base.com.dao.state_dao import StateDAO
+ from base.com.vo.city_vo import CityVO
+ 
+ 
+-
+-
+ @app.route('/ajax_area_city', methods=['get'])
+ def ajax_area_city():
+     try:
+@@ -24,4 +21,4 @@
+         return jsonify(ajax_area_city)
+ 
+     except Exception as ex:
+-        print('admin_ajax_area_city route exception occured>>>>>>>>>>', ex)
++        print('ajax_area_city route exception occured>>>>>>>>>>', ex)

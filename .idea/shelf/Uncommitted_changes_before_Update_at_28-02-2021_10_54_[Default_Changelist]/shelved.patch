@@ -1,0 +1,53 @@
+Index: base/templates/admin/addSubCategory.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><!DOCTYPE html>\r\n<html lang=\"en\">\r\n\r\n<head>\r\n    <meta charset=\"UTF-8\">\r\n    <meta content=\"width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no\" name=\"viewport\">\r\n    <title>Otika - Admin Dashboard Template</title>\r\n    <!-- General CSS Files -->\r\n    <link rel=\"stylesheet\" href=\"../../static/adminResources/css/app.min.css\">\r\n    <!-- Template CSS -->\r\n    <link rel=\"stylesheet\" href=\"../../static/adminResources/css/style.css\">\r\n    <link rel=\"stylesheet\" href=\"../../static/adminResources/css/components.css\">\r\n    <!-- Custom style CSS -->\r\n    <link rel=\"stylesheet\" href=\"../../static/adminResources/css/custom.css\">\r\n    <link rel='shortcut icon' type='image/x-icon' href='../../static/adminResources/image/favicon.ico'/>\r\n</head>\r\n\r\n<body>\r\n<div id=\"app\">\r\n    <div class=\"main-wrapper main-wrapper-1\">\r\n        <div class=\"navbar-bg\"></div>\r\n\r\n\r\n        {% include 'admin/header.html' %}\r\n\r\n\r\n        {% include 'admin/menu.html' %}\r\n\r\n\r\n        <!-- Main Content -->\r\n        <div class=\"main-content\">\r\n            <section class=\"section\">\r\n                <div class=\"section-body\">\r\n                    <div class=\"row\">\r\n                        <div class=\"col-12\">\r\n                            <div class=\"card\">\r\n                                <form action=\"/admin/insert_category\" method=\"post\">\r\n                                    <div class=\"card-header\">\r\n                                        <h4>Add Category</h4>\r\n                                    </div>\r\n                                    <div class=\"card-body\">\r\n                                        <div class=\"form-group\">\r\n                                            <label>Category Name</label>\r\n                                            <input type=\"text\" name=\"category_name\" class=\"form-control\" required=\"\">\r\n                                        </div>\r\n                                        <div class=\"form-group mb-0\">\r\n                                            <label>Category Description</label>\r\n                                            <textarea name=\"category_description\" class=\"form-control\" required=\"\"></textarea>\r\n                                        </div>\r\n                                    </div>\r\n                                    <div class=\"card-footer\">\r\n                                        <button type=\"submit\" class=\"btn btn-primary\">Submit</button>\r\n                                        <button type=\"reset\" class=\"btn btn-primary\">Reset</button>\r\n                                    </div>\r\n                                </form>\r\n                            </div>\r\n                        </div>\r\n                    </div>\r\n                </div>\r\n            </section>\r\n        </div>\r\n        {% include 'admin/footer.html' %}\r\n    </div>\r\n</div>\r\n<!-- General JS Scripts -->\r\n<script src=\"../../static/adminResources/js/app.min.js\"></script>\r\n<!-- JS Libraies -->\r\n<!-- Page Specific JS File -->\r\n<!-- Template JS File -->\r\n<script src=\"../../static/adminResources/js/scripts.js\"></script>\r\n<!-- Custom JS File -->\r\n<script src=\"../../static/adminResources/js/custom.js\"></script>\r\n<script>\r\n    $(document).ready(function () {\r\n        iziToast.error({\r\n            title: 'Hello, world!',\r\n            message: 'This awesome plugin is made by iziToast',\r\n            position: 'topRight'\r\n        });\r\n    });\r\n</script>\r\n</body>\r\n\r\n</html>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/base/templates/admin/addSubCategory.html b/base/templates/admin/addSubCategory.html
+--- a/base/templates/admin/addSubCategory.html	(revision 8ef204aea60b7e960b5a9141bb1c95906ffd38b2)
++++ b/base/templates/admin/addSubCategory.html	(date 1614447864243)
+@@ -19,14 +19,8 @@
+ <div id="app">
+     <div class="main-wrapper main-wrapper-1">
+         <div class="navbar-bg"></div>
+-
+-
+         {% include 'admin/header.html' %}
+-
+-
+         {% include 'admin/menu.html' %}
+-
+-
+         <!-- Main Content -->
+         <div class="main-content">
+             <section class="section">
+@@ -34,18 +28,22 @@
+                     <div class="row">
+                         <div class="col-12">
+                             <div class="card">
+-                                <form action="/admin/insert_category" method="post">
++                                <form action="/admin/insert_subcategory" method="post">
+                                     <div class="card-header">
+-                                        <h4>Add Category</h4>
++                                        <h4>Add Subcategory</h4>
+                                     </div>
+                                     <div class="card-body">
+                                         <div class="form-group">
+                                             <label>Category Name</label>
+-                                            <input type="text" name="category_name" class="form-control" required="">
++
++                                        </div>
++                                        <div class="form-group">
++                                            <label>Subcategory Name</label>
++                                            <input type="text" name="subcategory_name" class="form-control" required="">
+                                         </div>
+                                         <div class="form-group mb-0">
+-                                            <label>Category Description</label>
+-                                            <textarea name="category_description" class="form-control" required=""></textarea>
++                                            <label>Subcategory Description</label>
++                                            <textarea name="subcategory_description" class="form-control" required=""></textarea>
+                                         </div>
+                                     </div>
+                                     <div class="card-footer">
