@@ -22,52 +22,15 @@
 
                         </li>
                         <li>
-                            <a href="#" class="sf-with-ul">Men</a>
-
-                            <ul>
-                                <li>
-                                    <a href="#">Brand 1</a>
-                                </li>
-                                <li>
-                                    <a href="#">Brand 2</a>
-                                </li>
-                                <li><a href="#">Brand 3</a></li>
-                                <li><a href="#"><span>Brand 4<span
-                                        class="tip tip-new">New</span></span></a></li>
-                            </ul>
+                            <a href="/user/category-4cols">Men</a>
                         </li>
                         <li>
-                            <a href="#" class="sf-with-ul">Women</a>
-
-                            <ul>
-                                <li>
-                                    <a href="#">Brand 1</a>
-                                </li>
-                                <li>
-                                    <a href="#">Brand 2</a>
-                                </li>
-                                <li><a href="#">Brand 3</a></li>
-                                <li><a href="#"><span>Brand 4<span
-                                        class="tip tip-new">New</span></span></a></li>
-                            </ul>
+                            <a href="/user/category-4cols">Women</a>
                         </li>
-                        <li>
-                            <a href="#" class="sf-with-ul">Childern</a>
-
-                            <ul>
-                                <li><a>Temp pages</a></li>
-                                <li><a href="/user/blog-listing">Blog Listing</a></li>
-                                <li><a href="/user/login">Login</a></li>
-                                <li><a href="/user/faqs">FAQs</a></li>
-                                <li><a href="/user/load_feedback">FeedBack</a></li>
-                            </ul>
-                        </li>
-
 
                     </ul><!-- End .menu -->
                 </nav><!-- End .main-nav -->
             </div><!-- End .header-left -->
-
 
             <div class="header-right">
                 <ul class="top-menu">
@@ -76,22 +39,33 @@
                         <ul>
                             <li><a href="/user/about">About Us</a></li>
                             <li><a href="/user/contact">Contact Us</a></li>
-                            <li><a href="/user/view_complain">Comments</a></li>
-                            <li>
-                                <a href="/admin/logout_session"><i class="icon-user"></i>LogOut</a>
-                            </li>
 
                         </ul>
                     </li>
                 </ul><!-- End .top-menu -->
             </div><!-- End .header-right -->
-
             <div class="dropdown cart-dropdown">
-                <a href="/user/cart" class="dropdown-toggle" role="button"
+                <a href="#" class="dropdown-toggle" role="button"
+                   data-display="static">
+                    <i class="icon-user"></i>
+                    <div class="dropdown-menu dropdown-menu-right pullDown">
+                        <a href="#" class="dropdown-item has-icon text-danger"> <i class="icon-user"></i> Profile </a>
+                        <a href="/user/view_complain" class="dropdown-item has-icon text-danger"> <i class="icon-comments"></i> Comments </a>
+                        <a href="/user/load_feedback" class="dropdown-item has-icon text-danger"> <i class="icon-star"></i> Feedback </a>
+                        <a href="/admin/logout_session" class="dropdown-item has-icon text-danger"> <i
+                                class="icon-arrow-left"></i>
+                            Logout
+                        </a>
+                    </div>
+                </a>
+            </div>
+            <div class="dropdown cart-dropdown">
+                <a href="/user/load_cart" class="dropdown-toggle" role="button"
                    data-display="static">
                     <i class="icon-shopping-cart"></i>
                 </a>
-            </div><!-- End .cart-dropdown -->
+            </div>
+            <!-- End .cart-dropdown -->
         </div><!-- End .header-right -->
     </div><!-- End .container -->
 </header><!-- End .header -->

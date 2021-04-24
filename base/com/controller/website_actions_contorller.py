@@ -13,16 +13,6 @@ def user():
 
 
 
-
-
-@app.route('/user/checkout', methods=['GET'])
-def checkout():
-    try:
-        return render_template('user/checkout.html')
-    except Exception as ex:
-        print("admin_load_login route exception occured>>>>>>>>>>", ex)
-
-
 @app.route('/user/dashboard', methods=['GET'])
 def dashboard():
     try:
@@ -42,10 +32,10 @@ def category_boxed():
 @app.route('/user/category-4cols', methods=['GET'])
 def category_list():
     try:
-        product_dao=ProductDAO()
-        product_vo_list=product_dao.view_product()
-        print("product>>>>>>>>",product_vo_list)
-        return render_template('user/category-4cols.html',product_vo_list=product_vo_list)
+        product_dao = ProductDAO()
+        product_vo_list = product_dao.view_product()
+        print("product>>>>>>>>", product_vo_list)
+        return render_template('user/category-4cols.html', product_vo_list=product_vo_list)
     except Exception as ex:
         print("admin_load_login route exception occured>>>>>>>>>>", ex)
 
@@ -109,10 +99,10 @@ def product_extended():
 @app.route('/user/men_bottom_wear', methods=['GET'])
 def men_bottom_wear():
     try:
-        product_dao=ProductDAO()
-        product_vo_list=product_dao.view_product()
-        print("product>>>>>>>>",product_vo_list)
-        return render_template('user/men_bottom_wear.html',product_vo_list=product_vo_list)
+        product_dao = ProductDAO()
+        product_vo_list = product_dao.view_product()
+        print("product>>>>>>>>", product_vo_list)
+        return render_template('user/men_bottom_wear.html', product_vo_list=product_vo_list)
     except Exception as ex:
         print("admin_load_login route exception occured>>>>>>>>>>", ex)
 
@@ -120,10 +110,10 @@ def men_bottom_wear():
 @app.route('/user/men_upper_wear', methods=['GET'])
 def men_upper_wear():
     try:
-        product_dao=ProductDAO()
-        product_vo_list=product_dao.view_product()
-        print("product>>>>>>>>",product_vo_list)
-        return render_template('user/men_upper_wear.html',product_vo_list=product_vo_list)
+        product_dao = ProductDAO()
+        product_vo_list = product_dao.view_product()
+        print("product>>>>>>>>", product_vo_list)
+        return render_template('user/men_upper_wear.html', product_vo_list=product_vo_list)
     except Exception as ex:
         print("admin_load_login route exception occured>>>>>>>>>>", ex)
 
@@ -131,10 +121,10 @@ def men_upper_wear():
 @app.route('/user/children_upper_wear', methods=['GET'])
 def children_upper_wear():
     try:
-        product_dao=ProductDAO()
-        product_vo_list=product_dao.view_product()
-        print("product>>>>>>>>",product_vo_list)
-        return render_template('user/children_upper_wear.html',product_vo_list=product_vo_list)
+        product_dao = ProductDAO()
+        product_vo_list = product_dao.view_product()
+        print("product>>>>>>>>", product_vo_list)
+        return render_template('user/children_upper_wear.html', product_vo_list=product_vo_list)
     except Exception as ex:
         print("admin_load_login route exception occured>>>>>>>>>>", ex)
 
@@ -142,13 +132,9 @@ def children_upper_wear():
 @app.route('/user/children_outfit', methods=['GET'])
 def children_outfit():
     try:
-        product_dao=ProductDAO()
-        product_vo_list=product_dao.view_product()
-        print("product>>>>>>>>",product_vo_list)
-        return render_template('user/children_outfit.html',product_vo_list=product_vo_list)
+        product_dao = ProductDAO()
+        product_vo_list = product_dao.view_product()
+        print("product>>>>>>>>", product_vo_list)
+        return render_template('user/children_outfit.html', product_vo_list=product_vo_list)
     except Exception as ex:
         print("admin_load_login route exception occured>>>>>>>>>>", ex)
-
-
-
-
