@@ -71,7 +71,9 @@ def admin_delete_category():
             return redirect(url_for('admin_logout_session'))
 
     except Exception as ex:
+        flash('Subcategory is connected with this category')
         print("admin_delete_category route exception occured>>>>>>>>>>", ex)
+        return redirect(url_for('admin_view_category'))
 
 
 @app.route('/admin/edit_category', methods=['get'])

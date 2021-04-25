@@ -67,7 +67,9 @@ def admin_delete_state():
             return redirect(url_for('admin_logout_session'))
 
     except Exception as ex:
+        flash('Area or City is connected with this entity')
         print("admin_delete_state route exception occured>>>>>>>>>>", ex)
+        return redirect(url_for('admin_view_state'))
 
 
 @app.route('/admin/edit_state', methods=['get'])
